@@ -1,0 +1,171 @@
+[ITC
+
+          ITC TECHNOLOGY
+          Industrial Precision & Robotics](http://localhost:3051/)
+
+# ITC TECHNOLOGY
+
+Industrial Precision & Robotics
+- 
+          [Trang chủ](http://localhost:3051/)
+
+- 
+          [Giới thiệu & Năng lực](http://localhost:3051/capabilities.html)
+
+- 
+          [Sản phẩm](http://localhost:3051/products.html)
+
+
+            [Đồ gá & JIG công nghiệp](http://localhost:3051/products.html?category=jig-cong-nghiep)
+            [Xe đẩy & Giá kệ chứa Part](http://localhost:3051/products.html?category=xe-day-gia-ke)
+            [Máy tự động & Dây chuyền](http://localhost:3051/products.html?category=may-tu-dong)
+            [Robot công nghiệp & Xe AGV](http://localhost:3051/products.html?category=robot-agv)
+            [Gia công cơ khí chính xác](http://localhost:3051/products.html?category=gia-cong-cnc)
+
+
+- [Đồ gá & JIG công nghiệp](http://localhost:3051/products.html?category=jig-cong-nghiep)
+- [Xe đẩy & Giá kệ chứa Part](http://localhost:3051/products.html?category=xe-day-gia-ke)
+- [Máy tự động & Dây chuyền](http://localhost:3051/products.html?category=may-tu-dong)
+- [Robot công nghiệp & Xe AGV](http://localhost:3051/products.html?category=robot-agv)
+- [Gia công cơ khí chính xác](http://localhost:3051/products.html?category=gia-cong-cnc)
+- 
+          [Tin tức & Kỹ thuật](http://localhost:3051/news.html)
+
+- 
+          [Liên hệ](http://localhost:3051/contact.html)
+
+[Trang chủ](http://localhost:3051/)
+[Giới thiệu & Năng lực](http://localhost:3051/capabilities.html)
+[Sản phẩm](http://localhost:3051/products.html)
+- [Đồ gá & JIG công nghiệp](http://localhost:3051/products.html?category=jig-cong-nghiep)
+- [Xe đẩy & Giá kệ chứa Part](http://localhost:3051/products.html?category=xe-day-gia-ke)
+- [Máy tự động & Dây chuyền](http://localhost:3051/products.html?category=may-tu-dong)
+- [Robot công nghiệp & Xe AGV](http://localhost:3051/products.html?category=robot-agv)
+- [Gia công cơ khí chính xác](http://localhost:3051/products.html?category=gia-cong-cnc)
+[Đồ gá & JIG công nghiệp](http://localhost:3051/products.html?category=jig-cong-nghiep)
+[Xe đẩy & Giá kệ chứa Part](http://localhost:3051/products.html?category=xe-day-gia-ke)
+[Máy tự động & Dây chuyền](http://localhost:3051/products.html?category=may-tu-dong)
+[Robot công nghiệp & Xe AGV](http://localhost:3051/products.html?category=robot-agv)
+[Gia công cơ khí chính xác](http://localhost:3051/products.html?category=gia-cong-cnc)
+[Tin tức & Kỹ thuật](http://localhost:3051/news.html)
+[Liên hệ](http://localhost:3051/contact.html)
+[• ITC hoàn tất bàn giao hệ thống 12 trạm Jig hàn Robot cho dự án ô tô điện thông minh.](http://localhost:3051/news.html)
+[• Tối ưu hóa dây chuyền lắp ráp phụ tùng xe máy với giải pháp xe đẩy Part Trolley Kaizen.](http://localhost:3051/news.html)
+[• Khám phá công nghệ xe tự hành AGV Laser SLAM không cần dán băng từ nhà xưởng.](http://localhost:3051/news.html)
+
+## Đồ Gá JIG Hàn & Kiểm Tra Cho Ngành Ô Tô, Xe Máy
+Thiết kế và chế tạo đồ gá hàn khung vỏ ô tô, khung sườn xe máy với độ chính xác định vị ±0.03mm. Tích hợp kẹp khí nén SMC tự động và cảm biến Poka-Yoke chống lỗi.
+[Xem Các Mẫu JIG](http://localhost:3051/products.html?category=jig-cong-nghiep)
+
+## Xe Đẩy Chứa Part & Tugger Cart Kéo AGV
+Giải pháp xe đẩy chuyên dụng cho phụ tùng ô tô xe máy, khay đệm nhựa POM chống xước bề mặt, móc kéo liên hoàn Tugger Train kết hợp xe tự hành AGV.
+[Xem Hệ Thống Xe Đẩy](http://localhost:3051/products.html?category=xe-day-gia-ke)
+
+## Máy Tự Động Hóa SPM & Trạm Robot Hàn Công Nghiệp
+Tích hợp robot 6 trục Yaskawa/ABB, máy siết ốc tự động servo, máy tra keo 3 trục và dây chuyền lắp ráp thông minh tiêu chuẩn công nghiệp 4.0.
+[Xem Giải Pháp Robot](http://localhost:3051/products.html?category=robot-agv)
+
+## Danh Mục Sản Phẩm & Giải Pháp
+Cung cấp trọn gói từ khâu khảo sát, thiết kế 3D, gia công CNC chính xác đến lắp ráp và tích hợp hệ thống điều khiển tự động.
+
+### Đồ gá & JIG công nghiệp
+Jig hàn robot vỏ ô tô, Jig hàn khung sườn xe máy, Jig kiểm tra CMM Go-NoGo, Jig lắp ráp chính xác dung sai ±0.01mm.
+[Xem chi tiết danh mục](http://localhost:3051/products.html?category=jig-cong-nghiep)
+
+### Xe đẩy & Giá kệ chứa Part
+Xe đẩy part ô tô xe máy, xe kéo AGV Tugger Cart, khay chứa nhựa POM chống xước sơn, giá kệ con lăn Flow Rack FIFO.
+[Xem chi tiết danh mục](http://localhost:3051/products.html?category=xe-day-gia-ke)
+
+### Máy tự động & Dây chuyền
+Máy cấp vít tự động, máy tra keo robot 3 trục, máy ép thủy lực servo, dây chuyền lắp ráp và kiểm tra rò rỉ khí.
+[Xem chi tiết danh mục](http://localhost:3051/products.html?category=may-tu-dong)
+
+### Robot công nghiệp & Xe AGV
+Tích hợp buồng robot hàn Yaskawa/ABB 2 trạm xoay, robot bốc xếp pallet, xe tự hành AGV dẫn đường Laser SLAM 1 tấn.
+[Xem chi tiết danh mục](http://localhost:3051/products.html?category=robot-agv)
+
+### Gia công cơ khí chính xác
+Dàn máy phay CNC 3-4-5 trục Makino, Mazak, Moriseiki. Nhận gia công chi tiết đồ gá, khuôn mẫu dung sai đạt ±0.005mm.
+[Xem chi tiết danh mục](http://localhost:3051/products.html?category=gia-cong-cnc)
+
+### Thiết Kế Chế Tạo Theo Yêu Cầu (Customized)
+Quý khách có bản vẽ 2D/3D hoặc yêu cầu bài toán công nghệ? Đội ngũ kỹ sư R&D của ITC sẵn sàng khảo sát và thiết kế giải pháp tối ưu nhất.
+
+## Thiết Bị Công Nghiệp Đang Triển Khai
+Các sản phẩm đồ gá JIG, xe đẩy part và máy tự động được các tập đoàn sản xuất ô tô, xe máy và FDI tin dùng.
+[Xem Toàn Bộ Sản Phẩm (Catalog)](http://localhost:3051/products.html)
+
+## Hạ Tầng Nhà Máy & Công Nghệ Gia Công
+Hệ thống máy móc hiện đại và đội ngũ kỹ sư cơ điện tử giàu kinh nghiệm đảm bảo chất lượng chuẩn xác đến từng micron.
+
+### Trung tâm gia công CNC 3 - 5 Trục
+Hơn 25 máy phay CNC và tiện CNC Makino, Mazak, Moriseiki nhập khẩu từ Nhật Bản. Đảm bảo gia công các chi tiết Jig và đồ gá 3D dung sai ±0.005mm.
+
+### Phòng Đo Kiểm CMM Chuẩn Xác
+Trang bị máy đo tọa độ 3 chiều CMM Mitutoyo Crysta-Apex, máy đo biên dạng 2D, panme điện tử số tử. Mọi sản phẩm xuất xưởng đều có báo cáo kiểm định chất lượng CMM Report.
+
+### Chứng Nhận ISO 9001:2015
+Quy trình sản xuất, kiểm soát chất lượng nguyên vật liệu đầu vào và nghiệm thu chạy thử (FAT / SAT) tuân thủ nghiêm ngặt tiêu chuẩn quản lý chất lượng quốc tế.
+
+## 5 Bước Triển Khai Dự Án Chuẩn Công Nghiệp
+Đảm bảo tiến độ bàn giao đúng hạn và vận hành ổn định 100% khi tích hợp vào dây chuyền sản xuất của khách hàng.
+
+#### Tiếp nhận & Khảo sát
+Khảo sát mẫu part, bản vẽ 3D step file và vị trí lắp đặt trên line của nhà máy.
+
+#### Thiết kế 3D & Mô phỏng
+Lên thiết kế chi tiết SolidWorks/Catia, mô phỏng góc hàn và tầm với robot.
+
+#### Gia công & Lắp ráp
+Gia công CNC chính xác, nhiệt luyện linh kiện và lắp ráp cơ điện hoàn thiện.
+
+#### Chạy thử Test Run (FAT)
+Kiểm tra dung sai trên máy CMM, kẹp thử 1,000 chu kỳ và nghiệm thu tại xưởng.
+
+#### Bàn giao & Bảo hành 24/7
+Lắp đặt tại nhà máy khách hàng (SAT), đào tạo vận hành và bảo hành tận nơi.
+
+## Bài Viết & Công Nghệ Tự Động Hóa
+Chia sẻ kinh nghiệm thiết kế đồ gá Jig, tối ưu hóa logistics xe đẩy part và tích hợp robot công nghiệp.
+
+### Cần Báo Giá Đồ Gá JIG, Xe Đẩy Part Hoặc Máy Tự Động?
+
+Hãy để lại thông tin hoặc gửi yêu cầu chi tiết. Các kỹ sư thiết kế của ITC Technology sẽ liên hệ trao đổi phương án kỹ thuật và gửi báo giá trong 24 giờ làm việc.
+
+#### Gửi Yêu Cầu Báo Giá Nhanh
+Điền thông tin bên dưới để kỹ sư chuyên trách liên hệ hỗ trợ:
+
+## ITC TECHNOLOGY
+
+Precision Jigs & Robotics
+Công ty hàng đầu trong lĩnh vực thiết kế, chế tạo đồ gá JIG hàn, xe đẩy part công nghiệp, máy tự động theo yêu cầu và giải pháp tự động hóa robot tại Việt Nam.
+
+#### Sản Phẩm Chính
+- [Đồ gá & JIG công nghiệp](http://localhost:3051/products.html?category=jig-cong-nghiep)
+- [Xe đẩy & Giá kệ chứa Part](http://localhost:3051/products.html?category=xe-day-gia-ke)
+- [Máy tự động & Dây chuyền](http://localhost:3051/products.html?category=may-tu-dong)
+- [Robot công nghiệp & AGV](http://localhost:3051/products.html?category=robot-agv)
+- [Gia công cơ khí CNC](http://localhost:3051/products.html?category=gia-cong-cnc)
+[Đồ gá & JIG công nghiệp](http://localhost:3051/products.html?category=jig-cong-nghiep)
+[Xe đẩy & Giá kệ chứa Part](http://localhost:3051/products.html?category=xe-day-gia-ke)
+[Máy tự động & Dây chuyền](http://localhost:3051/products.html?category=may-tu-dong)
+[Robot công nghiệp & AGV](http://localhost:3051/products.html?category=robot-agv)
+[Gia công cơ khí CNC](http://localhost:3051/products.html?category=gia-cong-cnc)
+
+#### Về Doanh Nghiệp
+- [Hồ sơ năng lực công ty](http://localhost:3051/capabilities.html)
+- [Dàn máy gia công CNC](http://localhost:3051/capabilities.html#cnc-machines)
+- [Tiêu chuẩn ISO 9001](http://localhost:3051/capabilities.html#iso-standards)
+- [Tin tức kỹ thuật & Công nghệ](http://localhost:3051/news.html)
+- [Bản đồ chỉ đường đến nhà máy](http://localhost:3051/contact.html)
+- [Trang Quản Trị (Admin Portal)](http://localhost:3051/admin/login.html)
+[Hồ sơ năng lực công ty](http://localhost:3051/capabilities.html)
+[Dàn máy gia công CNC](http://localhost:3051/capabilities.html#cnc-machines)
+[Tiêu chuẩn ISO 9001](http://localhost:3051/capabilities.html#iso-standards)
+[Tin tức kỹ thuật & Công nghệ](http://localhost:3051/news.html)
+[Bản đồ chỉ đường đến nhà máy](http://localhost:3051/contact.html)
+[Trang Quản Trị (Admin Portal)](http://localhost:3051/admin/login.html)
+
+#### Chứng Nhận & Cam Kết
+Cam kết bảo mật 100% bản vẽ kỹ thuật (NDA), bảo hành kết cấu cơ khí 24 tháng và hỗ trợ kỹ thuật tận nơi trên toàn quốc.
+[ZALO](https://zalo.me/0983684968)

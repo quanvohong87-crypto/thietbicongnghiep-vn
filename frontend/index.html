@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITC TECHNOLOGY - Chế Tạo Máy Tự Động, Đồ Gá JIG, Xe Đẩy Part Công Nghiệp & Robot</title>
+  <meta name="description" content="CÔNG TY TNHH CÔNG NGHỆ ITC (ITC TECHNOLOGY) - MST: 0102367857 - Đơn vị hàng đầu Việt Nam chuyên thiết kế, chế tạo Đồ gá JIG hàn ô tô xe máy, xe đẩy part công nghiệp, máy tự động SPM, robot và giải pháp AGV. Hotline: 0983 684 968.">
+  <meta name="keywords" content="jig hàn ô tô, jig xe máy, đồ gá công nghiệp, xe đẩy part công nghiệp, máy tự động, robot hàn, AGV, gia công CNC, cnc vina">
+  
+  <!-- Google Fonts: Inter & Rajdhani -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <div class="topbar-item">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span class="dyn-address">BT58 Tulip 04, KĐT Vinhomes Riverside, P. Phúc Lợi, TP. Hà Nội</span>
+        </div>
+        <div class="topbar-item">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <a href="mailto:trunghn@thietbicongnghiep-vn.com.vn" class="dyn-email dyn-email-link" style="color: inherit; text-decoration: none;">trunghn@thietbicongnghiep-vn.com.vn</a>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-item">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>Hotline: <a href="tel:0983684968" class="dyn-hotline-link" style="color: inherit; text-decoration: none;"><strong class="dyn-hotline">0983 684 968</strong></a></span>
+        </div>
+        <div class="lang-switch" id="langSwitch">
+          <button type="button" class="lang-btn active" data-lang="vi" title="Tiếng Việt">VI</button>
+          <button type="button" class="lang-btn" data-lang="en" title="English">EN</button>
+          <button type="button" class="lang-btn" data-lang="zh" title="简体中文 (Tiếng Trung)">中文</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <a href="/" class="brand-logo">
+        <img src="/images/itc_logo.png" alt="ITC Technology Logo" class="logo-img">
+        <div class="logo-text">
+          <h1 class="dyn-brand">ITC TECHNOLOGY</h1>
+          <p class="dyn-slogan">GIẢI PHÁP ĐỒ GÁ JIG, XE ĐẨY CÔNG NGHIỆP & MÁY TỰ ĐỘNG HÓA TIÊU CHUẨN QUỐC TẾ</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item">
+          <a href="/" class="nav-link active">Trang chủ</a>
+        </li>
+        <li class="nav-item">
+          <a href="/capabilities.html" class="nav-link">Giới thiệu & Năng lực</a>
+        </li>
+        <li class="nav-item">
+          <a href="/products.html" class="nav-link">
+            Sản phẩm
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </a>
+          <ul class="dropdown-menu" id="navCategoryList">
+            <!-- Dynamically populated from API -->
+            <li><a class="dropdown-link" href="/products.html?category=jig-cong-nghiep">Đồ gá & JIG công nghiệp</a></li>
+            <li><a class="dropdown-link" href="/products.html?category=xe-day-gia-ke">Xe đẩy & Giá kệ chứa Part</a></li>
+            <li><a class="dropdown-link" href="/products.html?category=may-tu-dong">Máy tự động & Dây chuyền</a></li>
+            <li><a class="dropdown-link" href="/products.html?category=robot-agv">Robot công nghiệp & Xe AGV</a></li>
+            <li><a class="dropdown-link" href="/products.html?category=gia-cong-cnc">Gia công cơ khí chính xác</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/news.html" class="nav-link">Tin tức & Kỹ thuật</a>
+        </li>
+        <li class="nav-item">
+          <a href="/contact.html" class="nav-link">Liên hệ</a>
+        </li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="btn-rfq open-rfq-modal">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          <span>Yêu Cầu Báo Giá</span>
+        </button>
+        <button class="btn-mobile-toggle" id="mobileMenuToggle" aria-label="Menu">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Flash News Ticker (Inspired by CNC VINA) -->
+  <div class="ticker-bar">
+    <div class="container ticker-inner">
+      <div class="ticker-badge">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+        <span>TIN NỔI BẬT</span>
+      </div>
+      <div class="ticker-content">
+        <div class="ticker-scroll">
+          <a href="/news.html">• ITC hoàn tất bàn giao hệ thống 12 trạm Jig hàn Robot cho dự án ô tô điện thông minh.</a>
+          <a href="/news.html">• Tối ưu hóa dây chuyền lắp ráp phụ tùng xe máy với giải pháp xe đẩy Part Trolley Kaizen.</a>
+          <a href="/news.html">• Khám phá công nghệ xe tự hành AGV Laser SLAM không cần dán băng từ nhà xưởng.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Slider -->
+  <section class="hero-section">
+    <div class="hero-slider">
+      <!-- Slide 1: Ngành phụ trợ ô tô xe máy -->
+      <div class="hero-slide active" style="background-image: url('/images/welding_jig_fixture.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <div class="hero-content">
+            <span class="hero-subtitle">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+              Ngành Trọng Điểm & Công Nghiệp Phụ Trợ
+            </span>
+            <h2 class="hero-title">Đồ Gá JIG Hàn & <span>Tự Động Hóa Ô Tô - Xe Máy</span></h2>
+            <p class="hero-desc">Thiết kế đồ gá JIG hàn robot khung vỏ ô tô, khung sườn xe máy chính xác ±0.03mm, xe đẩy part lean, máy siết ốc tự động servo và buồng robot hàn 6 trục công nghệ cao.</p>
+            <div class="hero-buttons">
+              <a href="/products.html?category=nganh-phu-tro-o-to-xe-may" class="btn-primary">
+                Xem Ngành Ô Tô - Xe Máy
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              </a>
+              <button class="btn-outline-light open-rfq-modal" data-product-name="Jig hàn Robot khung vỏ xe ô tô">
+                Nhận Báo Giá Kỹ Thuật
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Ngành sản xuất Điện tử -->
+      <div class="hero-slide" style="background-image: url('/images/pcb_test_jig_fct.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <div class="hero-content">
+            <span class="hero-subtitle">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>
+              Công Nghệ Cao SMT & Phòng Sạch Cleanroom
+            </span>
+            <h2 class="hero-title">Đồ Gá Kiểm Tra Bo Mạch & <span>Tự Động Hóa Điện Tử</span></h2>
+            <p class="hero-desc">Đồ gá JIG kiểm tra chức năng FCT/ICT kim mạ vàng Pogo pin, máy tra keo Underfill & UV tự động bo mạch, bàn thao tác phòng sạch & xe đẩy chống tĩnh điện ESD.</p>
+            <div class="hero-buttons">
+              <a href="/products.html?category=nganh-san-xuat-dien-tu" class="btn-primary">
+                Xem Ngành Điện Tử
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              </a>
+              <button class="btn-outline-light open-rfq-modal" data-product-name="Đồ gá JIG kiểm tra chức năng bo mạch FCT / ICT chuyên dụng">
+                Tư Vấn Thiết Kế JIG FCT
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Ngành sản xuất sứ vệ sinh -->
+      <div class="hero-slide" style="background-image: url('/images/sanitary_dryer_chambers.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <div class="hero-content">
+            <span class="hero-subtitle">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>
+              Giải Pháp Thiết Bị & Dây Chuyền Sứ Vệ Sinh Công Nghiệp
+            </span>
+            <h2 class="hero-title">Buồng Sấy Mộc Tự Động & <span>Máy Kiểm Tra QC Sứ</span></h2>
+            <p class="hero-desc">Hệ thống buồng sấy mộc tuần hoàn khí nóng đa cấp điều khiển HMI, dây chuyền đúc băng khuôn thạch cao Gantry, máy kiểm tra rò khí áp suất & chân không và máy thử tải độ bền nắp bồn cầu EN 997.</p>
+            <div class="hero-buttons">
+              <a href="/products.html?category=nganh-san-xuat-su-ve-sinh" class="btn-primary">
+                Xem Thiết Bị Ngành Sứ
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              </a>
+              <button class="btn-outline-light open-rfq-modal" data-product-name="Hệ thống Buồng sấy mộc tự động tuần hoàn khí nóng đa cấp cho bồn cầu & lavabo">
+                Tư Vấn Buồng Sấy & Dây Chuyền
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="slider-nav">
+      <button class="slider-btn" id="prevSlide" aria-label="Previous Slide">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="slider-btn" id="nextSlide" aria-label="Next Slide">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon">15+</div>
+          <div>
+            <div class="stat-number">15+ Năm</div>
+            <div class="stat-label">Kinh nghiệm chế tạo máy & Jig</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <div>
+            <div class="stat-number">650+</div>
+            <div class="stat-label">Dự án chuyển giao thành công</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+          </div>
+          <div>
+            <div class="stat-number">8,500 m²</div>
+            <div class="stat-label">Diện tích 02 nhà máy sản xuất</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <div>
+            <div class="stat-number">ISO 9001</div>
+            <div class="stat-label">Hệ thống quản lý chất lượng</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Product Categories Showcase -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Lĩnh vực hoạt động chính</span>
+        <h2 class="section-title">Danh Mục Sản Phẩm & Giải Pháp</h2>
+        <p class="section-desc">Cung cấp trọn gói từ khâu khảo sát, thiết kế 3D, gia công CNC chính xác đến lắp ráp và tích hợp hệ thống điều khiển tự động.</p>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="category-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <!-- 1. Ngành phụ trợ ô tô, xe máy -->
+        <div class="category-card">
+          <div class="category-image-wrap">
+            <img class="category-img" src="/images/welding_jig_fixture.jpg" alt="Ngành phụ trợ ô tô xe máy">
+            <span class="category-badge-count">Ngành mũi nhọn</span>
+          </div>
+          <div class="category-body">
+            <h3 class="category-title">
+              Ngành phụ trợ ô tô, xe máy
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </h3>
+            <p class="category-desc">Giải pháp toàn diện: Đồ gá JIG hàn khung vỏ ô tô, xe máy, xe đẩy part logistics lean, máy siết ốc tự động servo, buồng robot hàn 6 trục và gia công cơ khí chính xác CNC.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px 0;">
+              <span style="font-size: 11.5px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Đồ gá & JIG</span>
+              <span style="font-size: 11.5px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Xe đẩy Part</span>
+              <span style="font-size: 11.5px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Máy tự động</span>
+              <span style="font-size: 11.5px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Robot & AGV</span>
+              <span style="font-size: 11.5px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Gia công CNC</span>
+            </div>
+            <a href="/products.html?category=nganh-phu-tro-o-to-xe-may" class="category-link">
+              <span>Xem sản phẩm ngành ô tô, xe máy</span>
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Ngành sản xuất Điện tử -->
+        <div class="category-card">
+          <div class="category-image-wrap">
+            <img class="category-img" src="/images/electronics_factory_showcase.jpg" alt="Ngành sản xuất Điện tử">
+            <span class="category-badge-count">Công nghệ SMT</span>
+          </div>
+          <div class="category-body">
+            <h3 class="category-title">
+              Ngành sản xuất Điện tử
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </h3>
+            <p class="category-desc">Đồ gá kiểm tra chức năng mạch FCT / ICT kim mạ vàng Pogo pin, máy tra keo Underfill & UV tự động bo mạch, bàn thao tác phòng sạch & xe đẩy chống tĩnh điện ESD, robot hàn vi mạch.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px 0;">
+              <span style="font-size: 11.5px; background: #fef3c7; color: #b45309; padding: 3px 8px; border-radius: 4px; font-weight: 600;">JIG ICT / FCT</span>
+              <span style="font-size: 11.5px; background: #fef3c7; color: #b45309; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Máy tra keo SMT</span>
+              <span style="font-size: 11.5px; background: #fef3c7; color: #b45309; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Bàn thao tác ESD</span>
+              <span style="font-size: 11.5px; background: #fef3c7; color: #b45309; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Robot hàn thiếc</span>
+            </div>
+            <a href="/products.html?category=nganh-san-xuat-dien-tu" class="category-link">
+              <span>Xem sản phẩm ngành điện tử</span>
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Ngành sản xuất sứ vệ sinh -->
+        <div class="category-card">
+          <div class="category-image-wrap">
+            <img class="category-img" src="/images/sanitary_dryer_chambers.jpg" alt="Ngành sản xuất sứ vệ sinh">
+            <span class="category-badge-count">Dây chuyền & QC</span>
+          </div>
+          <div class="category-body">
+            <h3 class="category-title">
+              Ngành sản xuất sứ vệ sinh
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </h3>
+            <p class="category-desc">Giải pháp đồng bộ: Hệ thống buồng sấy mộc tuần hoàn khí nóng đa cấp HMI, dây chuyền đúc băng khuôn thạch cao Gantry, máy kiểm tra rò khí áp suất & chân không, và máy thử độ bền nắp bồn cầu EN 997.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px 0;">
+              <span style="font-size: 11.5px; background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Buồng sấy mộc HMI</span>
+              <span style="font-size: 11.5px; background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Đúc băng Gantry</span>
+              <span style="font-size: 11.5px; background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Máy kiểm tra rò khí</span>
+              <span style="font-size: 11.5px; background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: 600;">Thử tải nắp EN 997</span>
+            </div>
+            <a href="/products.html?category=nganh-san-xuat-su-ve-sinh" class="category-link">
+              <span>Xem sản phẩm ngành sứ vệ sinh</span>
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Solution Card Customized -->
+        <div class="category-card" style="background: linear-gradient(135deg, var(--dark) 0%, #153358 100%); color: #fff;">
+          <div class="category-body" style="justify-content: center; text-align: center; padding: 35px 25px;">
+            <div style="font-size: 34px; color: var(--secondary); margin-bottom: 12px;">★</div>
+            <h3 style="color: #fff; font-size: 20px; margin-bottom: 12px;">Thiết Kế Chế Tạo Theo Yêu Cầu (Customized)</h3>
+            <p style="color: var(--gray-300); font-size: 13.5px; margin-bottom: 20px;">Quý khách có bản vẽ 2D/3D hoặc yêu cầu bài toán công nghệ đặc thù? Đội ngũ kỹ sư R&D của ITC sẵn sàng khảo sát tại nhà máy và lên phương án tối ưu.</p>
+            <button class="btn-rfq open-rfq-modal" style="justify-content: center; width: 100%;">
+              Gửi Bản Vẽ / Yêu Cầu Khảo Sát
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="section section-bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Sản phẩm tiêu biểu</span>
+        <h2 class="section-title">Thiết Bị Công Nghiệp Đang Triển Khai</h2>
+        <p class="section-desc">Các sản phẩm đồ gá JIG, xe đẩy part và máy tự động được các tập đoàn sản xuất ô tô xe máy, điện tử và sứ vệ sinh tin dùng.</p>
+        <div class="title-line"></div>
+      </div>
+
+      <!-- Quick Filter Tabs -->
+      <div class="filter-tabs" id="homeFilterTabs">
+        <button class="filter-btn active" data-cat="all">Tất cả sản phẩm</button>
+        <button class="filter-btn" data-cat="nganh-phu-tro-o-to-xe-may">Ngành ô tô, xe máy</button>
+        <button class="filter-btn" data-cat="nganh-san-xuat-dien-tu">Ngành Điện tử</button>
+        <button class="filter-btn" data-cat="nganh-san-xuat-su-ve-sinh">Ngành sứ vệ sinh</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="product-grid" id="homeProductGrid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="/products.html" class="btn-primary" style="padding: 14px 32px;">
+          Xem Toàn Bộ Sản Phẩm (Catalog)
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section (CNC VINA Style) -->
+  <section class="section section-bg-dark" id="capabilitiesSection">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle dyn-cap-subtitle">Năng lực sản xuất</span>
+        <h2 class="section-title dyn-cap-title">Hạ Tầng Nhà Máy & Công Nghệ Gia Công</h2>
+        <p class="section-desc dyn-cap-desc">Hệ thống máy móc hiện đại và đội ngũ kỹ sư cơ điện tử giàu kinh nghiệm đảm bảo chất lượng chuẩn xác đến từng micron.</p>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="capability-grid" id="capabilitiesGrid">
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+          </div>
+          <h3 class="capability-title">Trung tâm gia công CNC 3 - 5 Trục</h3>
+          <p class="capability-desc">Hơn 25 máy phay CNC và tiện CNC Makino, Mazak, Moriseiki nhập khẩu từ Nhật Bản. Đảm bảo gia công các chi tiết Jig và đồ gá 3D dung sai ±0.005mm.</p>
+        </div>
+
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+          </div>
+          <h3 class="capability-title">Phòng Đo Kiểm CMM Chuẩn Xác</h3>
+          <p class="capability-desc">Trang bị máy đo tọa độ 3 chiều CMM Mitutoyo Crysta-Apex, máy đo biên dạng 2D, panme điện tử số tử. Mọi sản phẩm xuất xưởng đều có báo cáo kiểm định chất lượng CMM Report.</p>
+        </div>
+
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </div>
+          <h3 class="capability-title">Chứng Nhận ISO 9001:2015</h3>
+          <p class="capability-desc">Quy trình sản xuất, kiểm soát chất lượng nguyên vật liệu đầu vào và nghiệm thu chạy thử (FAT / SAT) tuân thủ nghiêm ngặt tiêu chuẩn quản lý chất lượng quốc tế.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-Step Professional Workflow -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Quy trình chuyên nghiệp</span>
+        <h2 class="section-title">5 Bước Triển Khai Dự Án Chuẩn Công Nghiệp</h2>
+        <p class="section-desc">Đảm bảo tiến độ bàn giao đúng hạn và vận hành ổn định 100% khi tích hợp vào dây chuyền sản xuất của khách hàng.</p>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-step">
+          <div class="step-number">01</div>
+          <h4 class="step-title">Tiếp nhận & Khảo sát</h4>
+          <p class="step-desc">Khảo sát mẫu part, bản vẽ 3D step file và vị trí lắp đặt trên line của nhà máy.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-number">02</div>
+          <h4 class="step-title">Thiết kế 3D & Mô phỏng</h4>
+          <p class="step-desc">Lên thiết kế chi tiết SolidWorks/Catia, mô phỏng góc hàn và tầm với robot.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-number">03</div>
+          <h4 class="step-title">Gia công & Lắp ráp</h4>
+          <p class="step-desc">Gia công CNC chính xác, nhiệt luyện linh kiện và lắp ráp cơ điện hoàn thiện.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-number">04</div>
+          <h4 class="step-title">Chạy thử Test Run (FAT)</h4>
+          <p class="step-desc">Kiểm tra dung sai trên máy CMM, kẹp thử 1,000 chu kỳ và nghiệm thu tại xưởng.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-number">05</div>
+          <h4 class="step-title">Bàn giao & Bảo hành 24/7</h4>
+          <p class="step-desc">Lắp đặt tại nhà máy khách hàng (SAT), đào tạo vận hành và bảo hành tận nơi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Partners / Customers -->
+  <section class="section section-bg-light" style="padding: 40px 0;">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 25px;">
+        <span style="font-size: 13px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; letter-spacing: 2px;">
+          Đối Tác & Khách Hàng Tiêu Biểu Trong Ngành Ô Tô - Xe Máy - Điện Tử
+        </span>
+      </div>
+      <div class="partner-logos">
+        <div class="partner-logo-item">HONDA VIETNAM</div>
+        <div class="partner-logo-item">TOYOTA MOTOR</div>
+        <div class="partner-logo-item">VINFAST</div>
+        <div class="partner-logo-item">YAMAHA MOTOR</div>
+        <div class="partner-logo-item">PANASONIC</div>
+        <div class="partner-logo-item">CANON</div>
+        <div class="partner-logo-item">DENSO</div>
+        <div class="partner-logo-item">HYUNDAI TRANSYS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical News & Articles -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Góc kỹ thuật & Tin tức</span>
+        <h2 class="section-title">Bài Viết & Công Nghệ Tự Động Hóa</h2>
+        <p class="section-desc">Chia sẻ kinh nghiệm thiết kế đồ gá Jig, tối ưu hóa logistics xe đẩy part và tích hợp robot công nghiệp.</p>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="category-grid" id="homeArticlesGrid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RFQ Call to Action Banner & Form -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="cta-text">
+          <span style="color: var(--secondary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px;">Tư vấn kỹ thuật miễn phí</span>
+          <h3>Cần Báo Giá Đồ Gá JIG, Xe Đẩy Part Hoặc Máy Tự Động?</h3>
+          <p>Hãy để lại thông tin hoặc gửi yêu cầu chi tiết. Các kỹ sư thiết kế của ITC Technology sẽ liên hệ trao đổi phương án kỹ thuật và gửi báo giá trong 24 giờ làm việc.</p>
+          
+          <div class="cta-highlights">
+            <div class="cta-check-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Khảo sát tận nhà máy</span>
+            </div>
+            <div class="cta-check-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Thiết kế 3D tối ưu</span>
+            </div>
+            <div class="cta-check-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Giá cạnh tranh trực tiếp</span>
+            </div>
+            <div class="cta-check-item">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Bảo hành bảo trì 24/7</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-form-card">
+          <h4>Gửi Yêu Cầu Báo Giá Nhanh</h4>
+          <p>Điền thông tin bên dưới để kỹ sư chuyên trách liên hệ hỗ trợ:</p>
+          <form id="homeRfqForm">
+            <div class="form-group">
+              <label>Họ và tên Quý khách (*)</label>
+              <input type="text" id="homeRfqName" class="form-control" placeholder="Ví dụ: Nguyễn Văn Nam" required>
+            </div>
+            <div class="form-group">
+              <label>Số điện thoại / Zalo (*)</label>
+              <input type="tel" id="homeRfqPhone" class="form-control" placeholder="Ví dụ: 0983 684 968" required>
+            </div>
+            <div class="form-group">
+              <label>Tên công ty / Nhà máy</label>
+              <input type="text" id="homeRfqCompany" class="form-control" placeholder="Ví dụ: Công ty Phụ tùng Ô tô VinFast">
+            </div>
+            <div class="form-group">
+              <label>Nhóm sản phẩm cần báo giá</label>
+              <select id="homeRfqProduct" class="form-control">
+                <option value="Jig hàn robot ô tô xe máy">Đồ gá & JIG hàn, JIG kiểm tra CMM</option>
+                <option value="Xe đẩy chứa Part công nghiệp">Xe đẩy chứa Part & Giá kệ Flow Rack</option>
+                <option value="Máy tự động SPM">Máy tự động & Dây chuyền chuyên dụng</option>
+                <option value="Robot hàn và xe AGV">Robot công nghiệp & Xe tự hành AGV</option>
+                <option value="Gia công cơ khí CNC">Gia công chi tiết cơ khí chính xác</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Yêu cầu kỹ thuật / Số lượng sơ bộ</label>
+              <textarea id="homeRfqRequirements" class="form-control" placeholder="Mô tả kích thước part, dung sai, số lượng hoặc đính kèm link bản vẽ..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit-rfq">
+              <span>Gửi Yêu Cầu Báo Giá</span>
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1 -->
+        <div class="footer-col footer-about">
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <img src="/images/itc_logo.png" alt="ITC Technology Logo" class="logo-img logo-img-footer">
+            <div class="logo-text">
+              <h2 style="font-size: 16px; color: #fff;" class="dyn-brand">ITC TECHNOLOGY</h2>
+              <p style="color: var(--gray-400);" class="dyn-slogan">Precision Jigs & Robotics</p>
+            </div>
+          </div>
+          <p><strong class="dyn-company">CÔNG TY TNHH CÔNG NGHỆ ITC</strong> (Thương hiệu <span class="dyn-brand">ITC TECHNOLOGY</span>) - Đơn vị chuyên sâu thiết kế, chế tạo đồ gá JIG hàn, xe đẩy part công nghiệp, máy tự động SPM và tích hợp robot thông minh.</p>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>Mã số thuế: <strong class="dyn-taxcode">0102367857</strong></span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Địa chỉ văn phòng & xưởng: <span class="dyn-address">Biệt thự số 58, đường Tulip 04, khu đô thị Vinhomes Riverside, phường Phúc Lợi, Thành Phố Hà Nội, Việt Nam</span></span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Hotline / Zalo: <a href="tel:0983684968" class="dyn-hotline-link" style="color: #fff; font-weight: 800; text-decoration: none;"><strong class="dyn-hotline">0983 684 968</strong></a> (Tư vấn 24/7)</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>Email: <a href="mailto:trunghn@thietbicongnghiep-vn.com.vn" class="dyn-email dyn-email-link" style="color: #fff; text-decoration: none;">trunghn@thietbicongnghiep-vn.com.vn</a></span>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="footer-col">
+          <h4>Sản Phẩm Chính</h4>
+          <ul class="footer-links" id="footerCategoryList">
+            <li><a href="/products.html?category=jig-cong-nghiep">Đồ gá & JIG công nghiệp</a></li>
+            <li><a href="/products.html?category=xe-day-gia-ke">Xe đẩy & Giá kệ chứa Part</a></li>
+            <li><a href="/products.html?category=may-tu-dong">Máy tự động & Dây chuyền</a></li>
+            <li><a href="/products.html?category=robot-agv">Robot công nghiệp & AGV</a></li>
+            <li><a href="/products.html?category=gia-cong-cnc">Gia công cơ khí CNC</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="footer-col">
+          <h4>Về Doanh Nghiệp</h4>
+          <ul class="footer-links">
+            <li><a href="/capabilities.html">Hồ sơ năng lực công ty</a></li>
+            <li><a href="/capabilities.html#cnc-machines">Dàn máy gia công CNC</a></li>
+            <li><a href="/capabilities.html#iso-standards">Tiêu chuẩn ISO 9001</a></li>
+            <li><a href="/news.html">Tin tức kỹ thuật & Công nghệ</a></li>
+            <li><a href="/contact.html">Bản đồ chỉ đường đến nhà máy</a></li>
+            <li><a href="/admin/login.html" style="color: var(--primary-light);">Trang Quản Trị (Admin Portal)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="footer-col">
+          <h4>Chứng Nhận & Cam Kết</h4>
+          <p>Cam kết bảo mật 100% bản vẽ kỹ thuật (NDA), bảo hành kết cấu cơ khí 24 tháng và hỗ trợ kỹ thuật tận nơi trên toàn quốc.</p>
+          <div style="background: rgba(255,255,255,0.06); padding: 15px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-top: 15px;">
+            <div style="color: #fff; font-weight: 700; font-size: 13px; margin-bottom: 5px;">HỆ THỐNG QUẢN LÝ CHẤT LƯỢNG</div>
+            <div style="color: var(--secondary); font-size: 15px; font-weight: 800;">ISO 9001:2015 CERTIFIED</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 CÔNG TY TNHH CÔNG NGHỆ ITC - ITC TECHNOLOGY. MST: 0102367857. All Rights Reserved.</div>
+        <div>Hotline: 0983 684 968 | Email: trunghn@thietbicongnghiep-vn.com.vn</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Widgets -->
+  <div class="floating-widgets">
+    <!-- Phone Call Pulse -->
+    <a href="tel:0983684968" class="float-btn float-phone" title="Gọi Hotline 0983 684 968">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
+
+    <!-- Zalo Chat -->
+    <a href="https://zalo.me/0983684968" target="_blank" rel="noopener" class="float-btn float-zalo" title="Chat Zalo 0983 684 968">
+      <span style="font-weight: 900; font-size: 12px; letter-spacing: -0.5px;">ZALO</span>
+    </a>
+
+    <!-- Open Quote Modal -->
+    <button class="float-btn float-rfq open-rfq-modal" title="Gửi yêu cầu báo giá">
+      <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+    </button>
+  </div>
+
+  <!-- RFQ Popup Modal -->
+  <div class="modal-overlay" id="rfqModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Yêu Cầu Báo Giá Kỹ Thuật (RFQ)</h3>
+        <button class="btn-close-modal" id="closeRfqModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="rfqForm">
+          <div class="form-group">
+            <label>Họ và tên Quý khách (*)</label>
+            <input type="text" id="rfqName" class="form-control" placeholder="Ví dụ: Trần Quốc Tuấn" required>
+          </div>
+          <div class="form-group">
+            <label>Số điện thoại liên hệ (*)</label>
+            <input type="tel" id="rfqPhone" class="form-control" placeholder="Ví dụ: 0983 684 968" required>
+          </div>
+          <div class="form-group">
+            <label>Email nhận báo giá</label>
+            <input type="email" id="rfqEmail" class="form-control" placeholder="Ví dụ: tuan.tq@company.com">
+          </div>
+          <div class="form-group">
+            <label>Tên công ty / Đơn vị công tác</label>
+            <input type="text" id="rfqCompany" class="form-control" placeholder="Ví dụ: Honda Vietnam / VinFast Vendor">
+          </div>
+          <div class="form-group">
+            <label>Sản phẩm / Dịch vụ quan tâm</label>
+            <select id="rfqProductSelect" class="form-control">
+              <option value="">-- Chọn sản phẩm quan tâm --</option>
+              <optgroup label="Ngành phụ trợ ô tô, xe máy">
+                <option value="Jig hàn robot vỏ ô tô">Jig hàn robot vỏ ô tô</option>
+                <option value="Jig hàn khung sườn xe máy">Jig hàn khung sườn xe máy</option>
+                <option value="Jig kiểm tra kích thước CMM">Jig kiểm tra kích thước CMM (Checking Fixture)</option>
+                <option value="Xe đẩy chứa Part linh kiện ô tô">Xe đẩy chứa Part linh kiện ô tô</option>
+                <option value="Xe đẩy kéo hàng AGV Tugger Cart">Xe đẩy kéo hàng AGV Tugger Cart</option>
+                <option value="Máy cấp vít và siết ốc tự động">Máy cấp vít và siết ốc tự động</option>
+                <option value="Máy tra keo robot tự động 3 trục">Máy tra keo robot tự động 3 trục</option>
+                <option value="Buồng Robot hàn công nghiệp">Buồng Robot hàn công nghiệp</option>
+                <option value="Xe tự hành AGV Laser SLAM">Xe tự hành AGV Laser SLAM</option>
+                <option value="Gia công cơ khí chính xác CNC">Gia công cơ khí chính xác CNC</option>
+              </optgroup>
+              <optgroup label="Ngành sản xuất Điện tử">
+                <option value="JIG kiểm tra vi mạch FCT / ICT">JIG kiểm tra vi mạch FCT / ICT</option>
+                <option value="Máy tra keo Underfill SMT tự động">Máy tra keo Underfill SMT tự động</option>
+                <option value="Bàn thao tác phòng sạch & ESD">Bàn thao tác phòng sạch & ESD</option>
+                <option value="Robot hàn vi mạch SMT 4 trục">Robot hàn vi mạch SMT 4 trục</option>
+              </optgroup>
+              <optgroup label="Ngành sản xuất Sứ vệ sinh (Dây chuyền & Thiết bị)">
+                <option value="Hệ thống Robot phun men tự động 6 trục">Hệ thống Robot phun men tự động 6 trục</option>
+                <option value="Hệ thống Buồng sấy mộc tự động khí nóng HMI">Hệ thống Buồng sấy mộc tự động khí nóng HMI</option>
+                <option value="Dây chuyền đúc băng khuôn thạch cao Gantry">Dây chuyền đúc băng khuôn thạch cao Gantry</option>
+                <option value="Máy kiểm tra rò khí áp suất & chân không QC">Máy kiểm tra rò khí áp suất & chân không QC</option>
+                <option value="Máy kiểm tra độ bền nắp bồn cầu EN 997">Máy kiểm tra độ bền nắp bồn cầu EN 997</option>
+                <option value="Xe goòng sấy mộc & Dụng cụ vá mộc">Xe goòng sấy mộc & Dụng cụ vá mộc</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Yêu cầu kỹ thuật chi tiết / Ghi chú</label>
+            <textarea id="rfqRequirements" class="form-control" placeholder="Vui lòng nêu rõ quy cách, dung sai, số lượng, thời gian mong muốn bàn giao..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit-rfq">
+            Gửi Yêu Cầu Cho Đội Kỹ Sư ITC
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="/js/main.js"></script>
+  <script type="module">
+    import { api } from '/js/api.js';
+
+    // Load Featured Products on Homepage
+    async function loadFeaturedProducts(categoryFilter = 'all') {
+      const grid = document.getElementById('homeProductGrid');
+      if (!grid) return;
+
+      grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray-600);">Đang tải sản phẩm công nghiệp...</div>';
+
+      try {
+        const params = { limit: 8 };
+        if (categoryFilter !== 'all') {
+          params.category = categoryFilter;
+        }
+        const res = await api.getProducts(params);
+
+        if (res.success && res.data && res.data.length > 0) {
+          grid.innerHTML = res.data.map(p => `
+            <div class="product-card">
+              <div class="product-thumb">
+                <a href="/product-detail.html?id=${p.slug}">
+                  <img src="${p.thumbnail}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src = (p.categoryId === 'cat-elec' ? '/images/pcb_test_jig_fct.jpg' : (p.categoryId === 'cat-ceramic' ? '/images/sanitary_glazing_robot.jpg' : (p.categoryId === 'cat-cart' ? '/images/industrial_trolley_cart.jpg' : (p.categoryId === 'cat-robot' ? '/images/robotic_welding_cell_enclosure.jpg' : (p.categoryId === 'cat-cnc' ? '/images/cnc_machining_parts.jpg' : (p.categoryId === 'cat-spm' ? '/images/automatic_screwdriving_spm.jpg' : '/images/welding_jig_fixture.jpg'))))));">
+                </a>
+                <span class="product-code-tag">${p.code}</span>
+                <span class="product-cat-tag">${p.categoryName}</span>
+              </div>
+              <div class="product-body">
+                <h4 class="product-title">
+                  <a href="/product-detail.html?id=${p.slug}">${p.name}</a>
+                </h4>
+                <p class="product-excerpt">${p.shortDesc}</p>
+                <div class="product-footer">
+                  <a href="/product-detail.html?id=${p.slug}" class="btn-detail">
+                    <span>Chi tiết</span>
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                  </a>
+                  <button class="btn-rfq-mini open-rfq-modal" data-product-name="${p.name}">
+                    Báo giá
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+
+          // Re-attach modal trigger to newly rendered buttons
+          document.querySelectorAll('.open-rfq-modal').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              const pName = btn.getAttribute('data-product-name');
+              const modal = document.getElementById('rfqModal');
+              const sel = document.getElementById('rfqProductSelect');
+              if (pName && sel) {
+                let found = false;
+                for (let o of sel.options) {
+                  if (o.value === pName) { sel.value = pName; found = true; break; }
+                }
+                if (!found) sel.add(new Option(pName, pName, true, true));
+              }
+              if (modal) modal.classList.add('active');
+            });
+          });
+        } else {
+          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray-600);">Không có sản phẩm trong nhóm này.</div>';
+        }
+      } catch (err) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--danger);">Không thể kết nối đến máy chủ.</div>';
+      }
+    }
+
+    // Load Articles on Homepage
+    async function loadArticles() {
+      const grid = document.getElementById('homeArticlesGrid');
+      if (!grid) return;
+
+      try {
+        const res = await api.getArticles({ limit: 3 });
+        if (res.success && res.data && res.data.length > 0) {
+          grid.innerHTML = res.data.map(art => {
+            const fallbackImg = (art.category && art.category.includes('Điện tử'))
+              ? '/images/electronics_factory_showcase.jpg'
+              : ((art.category && (art.category.includes('sứ') || art.category.includes('Sứ')))
+                ? '/images/sanitary_factory_showcase.jpg'
+                : '/images/welding_jig_fixture.jpg');
+            return `
+            <div class="category-card">
+              <div class="category-image-wrap">
+                <img class="category-img" src="${art.thumbnail}" alt="${art.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+                <span class="category-badge-count">${art.category}</span>
+              </div>
+              <div class="category-body">
+                <h3 class="category-title" style="font-size: 16px;">
+                  <a href="/news-detail.html?id=${art.slug}">${art.title}</a>
+                </h3>
+                <p class="category-desc">${art.shortDesc}</p>
+                <a href="/news-detail.html?id=${art.slug}" class="category-link">
+                  <span>Đọc bài viết kỹ thuật</span>
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                </a>
+              </div>
+            </div>
+            `;
+          }).join('');
+        }
+      } catch (e) {}
+    }
+
+    // Filter Buttons logic
+    const filterButtons = document.querySelectorAll('#homeFilterTabs .filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-cat');
+        loadFeaturedProducts(cat);
+      });
+    });
+
+    // Handle Homepage CTA Form
+    const homeRfqForm = document.getElementById('homeRfqForm');
+    if (homeRfqForm) {
+      homeRfqForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const customerName = document.getElementById('homeRfqName').value.trim();
+        const phone = document.getElementById('homeRfqPhone').value.trim();
+        const company = document.getElementById('homeRfqCompany').value.trim();
+        const productInterest = document.getElementById('homeRfqProduct').value;
+        const requirements = document.getElementById('homeRfqRequirements').value.trim();
+
+        try {
+          const res = await api.submitQuote({
+            customerName,
+            phone,
+            company,
+            productInterest,
+            requirements
+          });
+          if (res.success) {
+            const currentBrand = (window.__itcSettings && window.__itcSettings.brandName) || 'ITC TECHNOLOGY';
+            alert(`Cảm ơn Quý khách! ${currentBrand} đã nhận được thông tin yêu cầu và sẽ liên hệ trong ít phút.`);
+            homeRfqForm.reset();
+          } else {
+            alert(res.message || 'Có lỗi xảy ra, vui lòng thử lại.');
+          }
+        } catch (err) {
+          alert('Lỗi kết nối máy chủ, vui lòng gọi hotline 0983 684 968');
+        }
+      });
+    }
+
+    // Initial loads
+    loadFeaturedProducts('all');
+    loadArticles();
+  </script>
+</body>
+</html>

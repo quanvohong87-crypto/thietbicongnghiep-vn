@@ -1,0 +1,25 @@
+{
+  "name": "webitc-industrial-technology",
+  "version": "1.0.0",
+  "description": "Website giới thiệu sản phẩm công nghiệp JIG, xe đẩy part, máy tự động, robot & Hệ thống quản trị Admin CMS",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test.js",
+    "tunnel": "node start_tunnel.js"
+  },
+  "keywords": [
+    "jig",
+    "welding-fixture",
+    "part-trolley",
+    "industrial-technology",
+    "robotics",
+    "cnc-vina-reference",
+    "cms",
+    "admin"
+  ],
+  "author": "ITC Technology Team",
+  "license": "MIT"
+}

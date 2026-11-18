@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Danh Mục Sản Phẩm - ITC TECHNOLOGY CMS</title>
+  
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('itc_admin_token');
+        var u = localStorage.getItem('itc_admin_user');
+        if (!t || !u) {
+          document.documentElement.style.display = 'none';
+          window.location.replace('/admin/login');
+        }
+      } catch(e) {
+        document.documentElement.style.display = 'none';
+        window.location.replace('/admin/login');
+      }
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <a href="/admin" class="sidebar-brand" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; cursor: pointer;">
+        <img src="/images/itc_logo.png" alt="ITC Logo" class="admin-brand-logo">
+        <div>
+          <div class="brand-name">ITC TECHNOLOGY</div>
+          <div class="brand-sub">Admin CMS Portal</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-heading">Tổng Quan</li>
+        <li class="nav-item">
+          <a href="/admin" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            <span>Bảng Điều Khiển</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Quản Lý Sản Phẩm</li>
+        <li class="nav-item">
+          <a href="/admin/products" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>Sản Phẩm & Đồ Gá</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/categories" class="nav-link active">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span>Danh Mục & Thể Loại</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Nội Dung & Khách Hàng</li>
+        <li class="nav-item">
+          <a href="/admin/articles" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <span>Bài Viết & Tin Tức</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/quotes" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <span>Yêu Cầu Báo Giá</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Cấu Hình</li>
+        <li class="nav-item">
+          <a href="/admin/settings" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <span>Cài Đặt & Mật Khẩu</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">&larr; Xem Website</a>
+        <button class="btn-logout">Đăng xuất</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-header">
+        <h2 class="page-title">Quản Lý Danh Mục & Thể Loại Sản Phẩm</h2>
+        <div class="user-profile">
+          <div class="user-avatar" id="adminCurrentUserAvatar">A</div>
+          <div class="user-info">
+            <div class="user-name" id="adminCurrentUserName">Quản trị viên</div>
+            <div class="user-role" id="adminCurrentUserRole">Superadmin</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 700;">Danh sách thể loại thiết bị</h3>
+            <p style="font-size: 13px; color: var(--admin-text-muted);">Các danh mục hiển thị trên thanh Menu và bộ lọc sản phẩm trang chủ.</p>
+          </div>
+          <button class="btn btn-primary" id="btnOpenAddCategory">
+            + Thêm Danh Mục Mới
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 60px;">STT</th>
+                  <th>Tên danh mục thể loại</th>
+                  <th>Đường dẫn (Slug)</th>
+                  <th>Mô tả ngắn</th>
+                  <th style="width: 130px;">Số sản phẩm</th>
+                  <th style="width: 140px; text-align: right;">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody">
+                <tr><td colspan="6" style="text-align: center; padding: 30px;">Đang tải danh mục...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Category Modal -->
+  <div class="admin-modal-overlay" id="categoryModal">
+    <div class="admin-modal-card" style="max-width: 500px;">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="catModalTitle">Thêm Danh Mục Mới</h3>
+        <button class="btn btn-secondary btn-icon" id="btnCloseCatModal">&times;</button>
+      </div>
+      <div class="admin-modal-body">
+        <form id="categoryForm">
+          <input type="hidden" id="catEditId">
+
+          <div class="form-group">
+            <label class="form-label">Tên danh mục (*)</label>
+            <input type="text" id="catName" class="form-control" placeholder="Ví dụ: Đồ gá & JIG công nghiệp" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Đường dẫn URL (Slug)</label>
+            <input type="text" id="catSlug" class="form-control" placeholder="Để trống sẽ tự động tạo từ tên">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mô tả ngắn gọn</label>
+            <textarea id="catShortDesc" class="form-control" placeholder="Tóm tắt về dòng sản phẩm trong danh mục này..."></textarea>
+          </div>
+
+          <div class="admin-modal-footer" style="padding-left: 0; padding-right: 0;">
+            <button type="button" class="btn btn-secondary" id="btnCancelCatModal">Hủy</button>
+            <button type="submit" class="btn btn-primary" id="btnSaveCategory">Lưu Danh Mục</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/admin/js/auth.js"></script>
+  <script type="module">
+    import { adminApi } from '/admin/js/api.js';
+
+    let allCategories = [];
+    const modal = document.getElementById('categoryModal');
+    const form = document.getElementById('categoryForm');
+    const tableBody = document.getElementById('categoriesTableBody');
+
+    async function loadCategories() {
+      tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 30px;">Đang tải...</td></tr>';
+      try {
+        const res = await adminApi.getCategories();
+        if (res.success && res.data) {
+          allCategories = res.data;
+          renderTable();
+        }
+      } catch (err) {
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--admin-danger); padding: 30px;">Lỗi tải dữ liệu.</td></tr>';
+      }
+    }
+
+    function renderTable() {
+      if (allCategories.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 30px;">Chưa có danh mục nào.</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = allCategories.map((c, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td>${c.parentId ? '<span style="color: var(--admin-text-muted); margin-left: 12px;">↳</span> ' : '<strong style="color: var(--admin-primary);">★ </strong>'}<strong>${c.name}</strong></td>
+          <td><code>${c.slug}</code></td>
+          <td style="color: var(--admin-text-muted); font-size: 13px;">${c.shortDesc || '-'}</td>
+          <td><span class="badge badge-primary">${c.productCount || 0} sản phẩm</span></td>
+          <td style="text-align: right;">
+            <button class="btn btn-secondary btn-icon btn-edit" data-id="${c.id}">Sửa</button>
+            <button class="btn btn-danger btn-icon btn-delete" data-id="${c.id}">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+
+      tableBody.querySelectorAll('.btn-edit').forEach(b => {
+        b.addEventListener('click', () => openEditModal(b.getAttribute('data-id')));
+      });
+      tableBody.querySelectorAll('.btn-delete').forEach(b => {
+        b.addEventListener('click', () => deleteCategory(b.getAttribute('data-id')));
+      });
+    }
+
+    function openAddModal() {
+      document.getElementById('catModalTitle').textContent = 'Thêm Danh Mục Mới';
+      form.reset();
+      document.getElementById('catEditId').value = '';
+      modal.classList.add('active');
+    }
+
+    function openEditModal(id) {
+      const c = allCategories.find(item => item.id === id);
+      if (!c) return;
+      document.getElementById('catModalTitle').textContent = 'Chỉnh Sửa Danh Mục';
+      document.getElementById('catEditId').value = c.id;
+      document.getElementById('catName').value = c.name;
+      document.getElementById('catSlug').value = c.slug;
+      document.getElementById('catShortDesc').value = c.shortDesc || '';
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    document.getElementById('btnOpenAddCategory').addEventListener('click', openAddModal);
+    document.getElementById('btnCloseCatModal').addEventListener('click', closeModal);
+    document.getElementById('btnCancelCatModal').addEventListener('click', closeModal);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('catEditId').value;
+      const name = document.getElementById('catName').value.trim();
+      const slug = document.getElementById('catSlug').value.trim();
+      const shortDesc = document.getElementById('catShortDesc').value.trim();
+
+      const payload = { name, slug, shortDesc };
+      const saveBtn = document.getElementById('btnSaveCategory');
+      saveBtn.disabled = true;
+
+      try {
+        let res;
+        if (id) {
+          res = await adminApi.updateCategory(id, payload);
+        } else {
+          res = await adminApi.createCategory(payload);
+        }
+
+        if (res.success) {
+          alert('Lưu danh mục thành công!');
+          closeModal();
+          loadCategories();
+        } else {
+          alert(res.message || 'Lỗi khi lưu.');
+        }
+      } catch (err) {
+        alert('Lỗi kết nối máy chủ.');
+      } finally {
+        saveBtn.disabled = false;
+      }
+    });
+
+    async function deleteCategory(id) {
+      const c = allCategories.find(item => item.id === id);
+      if (!confirm(`Bạn có chắc chắn muốn xóa danh mục "${c.name}"?`)) return;
+
+      try {
+        const res = await adminApi.deleteCategory(id);
+        if (res.success) {
+          alert('Đã xóa danh mục!');
+          loadCategories();
+        } else {
+          alert(res.message || 'Lỗi khi xóa.');
+        }
+      } catch (err) {
+        alert('Lỗi kết nối máy chủ.');
+      }
+    }
+
+    loadCategories();
+  </script>
+</body>
+</html>

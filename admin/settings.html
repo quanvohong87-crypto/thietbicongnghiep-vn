@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cài Đặt Hệ Thống & Tài Khoản - ITC TECHNOLOGY CMS</title>
+  
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('itc_admin_token');
+        var u = localStorage.getItem('itc_admin_user');
+        if (!t || !u) {
+          document.documentElement.style.display = 'none';
+          window.location.replace('/admin/login');
+        }
+      } catch(e) {
+        document.documentElement.style.display = 'none';
+        window.location.replace('/admin/login');
+      }
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin-animation { animation: spin 0.8s linear infinite; }
+    @media (max-width: 992px) {
+      .settings-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    .logo-dropzone {
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 24px 16px;
+      text-align: center;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .logo-dropzone:hover, .logo-dropzone.dragover {
+      border-color: var(--admin-primary);
+      background: #eff6ff;
+    }
+    .highlight-card-row {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1.5fr 1.5fr 2fr auto;
+      gap: 14px;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .highlight-card-row:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+    @media (max-width: 800px) {
+      .highlight-card-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    .preview-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 12px;
+      border-right: 1px solid #e2e8f0;
+    }
+    .preview-stat-item:last-child {
+      border-right: none;
+    }
+    .preview-stat-icon {
+      width: 48px;
+      height: 48px;
+      background: #eff6ff;
+      color: #0052cc;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .preview-stat-number {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+    .preview-stat-label {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 3px;
+    }
+    .cap-card-row {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 220px 1.5fr 2fr auto;
+      gap: 14px;
+      align-items: start;
+      transition: all 0.2s ease;
+    }
+    .cap-card-row:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    @media (max-width: 900px) {
+      .cap-card-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    .preview-cap-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 20px 18px;
+      transition: all 0.2s ease;
+    }
+    .preview-cap-card:hover {
+      border-color: #38bdf8;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .preview-cap-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: #0052cc;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .preview-cap-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .preview-cap-desc {
+      font-size: 12.5px;
+      color: #94a3b8;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <a href="/admin" class="sidebar-brand" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; cursor: pointer;">
+        <img src="/images/itc_logo.png" alt="ITC Logo" class="admin-brand-logo">
+        <div>
+          <div class="brand-name">ITC TECHNOLOGY</div>
+          <div class="brand-sub">Admin CMS Portal</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-heading">Tổng Quan</li>
+        <li class="nav-item">
+          <a href="/admin" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            <span>Bảng Điều Khiển</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Quản Lý Sản Phẩm</li>
+        <li class="nav-item">
+          <a href="/admin/products" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>Sản Phẩm & Đồ Gá</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/categories" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span>Danh Mục & Thể Loại</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Nội Dung & Khách Hàng</li>
+        <li class="nav-item">
+          <a href="/admin/articles" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <span>Bài Viết & Tin Tức</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/quotes" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <span>Yêu Cầu Báo Giá</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Cấu Hình</li>
+        <li class="nav-item">
+          <a href="/admin/settings" class="nav-link active">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <span>Cài Đặt & Mật Khẩu</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">&larr; Xem Website</a>
+        <button class="btn-logout">Đăng xuất</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-header">
+        <h2 class="page-title">Cài Đặt Hệ Thống & Tài Khoản Quản Trị</h2>
+        <div class="user-profile">
+          <div class="user-avatar" id="adminCurrentUserAvatar">A</div>
+          <div class="user-info">
+            <div class="user-name" id="adminCurrentUserName">Quản trị viên</div>
+            <div class="user-role" id="adminCurrentUserRole">Superadmin</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <div class="settings-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+          <!-- Left Column: Logo & Password -->
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <!-- Brand Logo Card -->
+            <div class="card">
+              <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 class="card-title">Logo & Nhận Diện Thương Hiệu</h3>
+                  <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 2px;">Cập nhật biểu trưng chính hiển thị trên toàn bộ Website & CMS</div>
+                </div>
+                <span class="badge badge-success" style="display: inline-flex; align-items: center; gap: 5px;">
+                  <span style="width: 6px; height: 6px; background: currentColor; border-radius: 50%;"></span>
+                  Hoạt Động
+                </span>
+              </div>
+              <div style="padding: 24px;">
+                <!-- Current Logo Preview Container -->
+                <div style="background: linear-gradient(135deg, #0b1e36 0%, #17365d 100%); border-radius: var(--radius-md); padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <span style="font-size: 11.5px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Logo Đang Hiển Thị</span>
+                    <span style="font-size: 11px; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 10px; font-weight: 600;">Xem Trước Nền Tối</span>
+                  </div>
+                  <div style="min-height: 85px; display: flex; align-items: center; justify-content: center; padding: 12px; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); border: 1px dashed rgba(255,255,255,0.15);">
+                    <img id="currentLogoPreview" src="/images/itc_logo.png" alt="Logo hiện tại" style="max-height: 70px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); transition: transform 0.2s;" onerror="this.src='/images/itc_logo.png'">
+                  </div>
+                  <div id="currentLogoPath" style="font-size: 11.5px; color: #cbd5e1; margin-top: 10px; font-family: monospace; word-break: break-all; opacity: 0.85;">
+                    /images/itc_logo.png
+                  </div>
+
+                  <!-- Live Header & Slogan Preview -->
+                  <div style="margin-top: 16px; padding: 14px 16px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); text-align: left; display: flex; align-items: center; gap: 14px;">
+                    <img id="livePreviewLogo" src="/images/itc_logo.png" style="height: 44px; width: auto; max-width: 110px; object-fit: contain;">
+                    <div style="border-left: 1.5px solid rgba(255,255,255,0.15); padding-left: 14px; flex: 1;">
+                      <div id="livePreviewBrand" style="font-size: 15px; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; font-family: 'Inter', sans-serif;">ITC TECHNOLOGY</div>
+                      <div id="livePreviewSlogan" style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.4px; line-height: 1.35; margin-top: 3px;">
+                        GIẢI PHÁP ĐỒ GÁ JIG, XE ĐẨY CÔNG NGHIỆP & MÁY TỰ ĐỘNG HÓA TIÊU CHUẨN QUỐC TẾ
+                      </div>
+                    </div>
+                  </div>
+                  <div style="font-size: 11px; color: #94a3b8; margin-top: 6px; text-align: left;">
+                    💡 <em>Hình ảnh trực quan thanh Header: Logo + Tên Brand + Dòng text dưới Logo</em>
+                  </div>
+                </div>
+
+                <!-- Dropzone for new Logo -->
+                <div class="logo-dropzone" id="logoDropzone">
+                  <svg width="34" height="34" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" style="color: var(--admin-primary); margin: 0 auto 10px auto; display: block;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                  </svg>
+                  <div style="font-weight: 700; color: var(--admin-sidebar-bg); font-size: 14px;">Kéo thả file logo vào đây hoặc nhấp để chọn tệp</div>
+                  <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 4px;">
+                    Hỗ trợ PNG trong suốt, SVG, WebP, JPG (Khuyên dùng PNG chất lượng cao)
+                  </div>
+                  <input type="file" id="logoFileInput" accept="image/png, image/jpeg, image/webp, image/svg+xml" style="display: none;">
+                </div>
+
+                <!-- Pending File Staged Box -->
+                <div id="logoSelectedBox" style="display: none; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: var(--radius-md); padding: 12px 16px; margin-top: 14px; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 44px; height: 44px; background: #0b1e36; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 4px;">
+                      <img id="logoSelectedThumb" src="" alt="Selected Preview" style="max-height: 36px; max-width: 36px; object-fit: contain;">
+                    </div>
+                    <div>
+                      <div id="logoSelectedName" style="font-size: 13px; font-weight: 700; color: #065f46; word-break: break-all;">logo_moi.png</div>
+                      <div id="logoSelectedSize" style="font-size: 11.5px; color: #047857;">124 KB</div>
+                    </div>
+                  </div>
+                  <button type="button" id="btnCancelSelectedLogo" class="btn btn-secondary" style="padding: 5px 10px; font-size: 12px;">Hủy chọn</button>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-primary" id="btnUploadLogo" disabled style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    <span>Lưu & Áp Dụng Logo</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary" id="btnResetDefaultLogo" style="display: flex; align-items: center; gap: 6px;" title="Khôi phục lại logo gốc ITC">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    <span>Dùng Logo Gốc ITC</span>
+                  </button>
+                </div>
+
+                <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 14px; line-height: 1.6; background: #f8fafc; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid #e2e8f0;">
+                  ✨ <strong>Tự động đồng bộ:</strong> Logo mới sẽ hiển thị ngay lập tức trên Header, Footer 7 trang website khách hàng, Favicon tab trình duyệt và thanh bên CMS.
+                </div>
+              </div>
+            </div>
+
+            <!-- Change Password Card -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Đổi Mật Khẩu Quản Trị</h3>
+              </div>
+              <div style="padding: 24px;">
+                <form id="changePasswordForm">
+                  <div class="form-group">
+                    <label class="form-label">Tài khoản hiện tại</label>
+                    <input type="text" class="form-control" value="admin" disabled style="background: #f1f5f9;">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Mật khẩu cũ (*)</label>
+                    <input type="password" id="oldPassword" class="form-control" required placeholder="Nhập mật khẩu cũ">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Mật khẩu mới (*)</label>
+                    <input type="password" id="newPassword" class="form-control" required placeholder="Tối thiểu 6 ký tự">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Xác nhận mật khẩu mới (*)</label>
+                    <input type="password" id="confirmNewPassword" class="form-control" required placeholder="Nhập lại mật khẩu mới">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" id="btnChangePassword">
+                    Lưu Mật Khẩu Mới
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Info Card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Thông Tin Doanh Nghiệp (Hiển thị Website)</h3>
+            </div>
+            <div style="padding: 24px;">
+              <form id="companySettingsForm">
+                <div class="form-group">
+                  <label class="form-label">Tên công ty pháp lý</label>
+                  <input type="text" id="settingCompanyName" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Thương hiệu / Brand Name</label>
+                  <input type="text" id="settingBrandName" class="form-control" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div class="form-group">
+                    <label class="form-label">Mã số thuế (MST)</label>
+                    <input type="text" id="settingTaxCode" class="form-control" placeholder="0102367857">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Số điện thoại / Zalo</label>
+                    <input type="text" id="settingHotline" class="form-control" required placeholder="0983684968">
+                  </div>
+                </div>
+
+                <div class="form-group" style="background: #f0f7ff; padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid #bfdbfe;">
+                  <label class="form-label" style="font-weight: 700; color: #1e40af; margin-bottom: 6px;">
+                    ✉️ Email Nhận Khôi Phục Mật Khẩu (Quên Mật Khẩu) (*)
+                  </label>
+                  <input type="email" id="settingRecoveryEmail" class="form-control" required placeholder="trunghn@thietbicongnghiep-vn.com.vn" style="background: #ffffff;">
+                  <div style="font-size: 12px; color: #3b82f6; margin-top: 5px; line-height: 1.5;">
+                    Hòm thư quản trị viên dùng để nhận lại User & Mật khẩu mới khi bấm "Quên mật khẩu" tại trang đăng nhập. Bạn có thể đổi sang email bất kỳ để test.
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Email tiếp nhận liên hệ & Yêu cầu báo giá</label>
+                  <input type="email" id="settingEmail" class="form-control" required placeholder="trunghn@thietbicongnghiep-vn.com.vn">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Địa chỉ Nhà máy 1 (Trụ sở)</label>
+                  <input type="text" id="settingAddress" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Địa chỉ Nhà máy 2 (Xưởng gia công)</label>
+                  <input type="text" id="settingFactoryAddress" class="form-control">
+                </div>
+
+                <div class="form-group" style="background: #fdf8f6; padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid #fed7aa;">
+                  <label class="form-label" style="font-weight: 700; color: #9a3412; margin-bottom: 6px;">
+                    🏷️ Khẩu hiệu / Slogan dưới Logo (Header & Footer) (*)
+                  </label>
+                  <input type="text" id="settingSlogan" class="form-control" placeholder="GIẢI PHÁP ĐỒ GÁ JIG, XE ĐẨY CÔNG NGHIỆP & MÁY TỰ ĐỘNG HÓA TIÊU CHUẨN QUỐC TẾ" style="background: #ffffff;">
+                  <div style="font-size: 12px; color: #c2410c; margin-top: 5px; line-height: 1.5;">
+                    Hiển thị trực tiếp ngay dưới dòng chữ thương hiệu tại Logo Menu Header và chân trang Footer trên toàn bộ Website khách hàng.
+                  </div>
+                </div>
+
+                <!-- Technical Support Box Settings (Sidebar Sản Phẩm - Ảnh 1) -->
+                <div style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: var(--radius-md); padding: 18px; margin-bottom: 20px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <label class="form-label" style="font-weight: 700; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 8px;">
+                      <span>💬 Hộp Tư Vấn Kỹ Thuật 24/7 (Sidebar Sản Phẩm - Ảnh 1)</span>
+                    </label>
+                    <span class="badge" style="background: #f1f5f9; color: #475569; font-size: 11px;">Hiển thị trực tiếp</span>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label" style="font-size: 12px;">Tiêu đề hộp tư vấn</label>
+                    <input type="text" id="settingSupportTitle" class="form-control" placeholder="Cần Tư Vấn Kỹ Thuật?">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label" style="font-size: 12px;">Nội dung mô tả</label>
+                    <textarea id="settingSupportDesc" class="form-control" rows="2" placeholder="Đội ngũ kỹ sư cơ điện tử của ITC sẵn sàng hỗ trợ bạn 24/7."></textarea>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label" style="font-size: 12px;">Chữ trên nút bấm</label>
+                    <input type="text" id="settingSupportBtn" class="form-control" placeholder="Gửi Yêu Cầu Báo Giá">
+                  </div>
+
+                  <!-- Live Support Preview -->
+                  <div style="margin-top: 14px; background: #ffffff; border: 1px dashed #e2e8f0; border-radius: 6px; padding: 12px 14px;">
+                    <div style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 6px;">Xem trước trên Web:</div>
+                    <div style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 14px; text-align: left;">
+                      <div id="previewSupportTitle" style="font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">Cần Tư Vấn Kỹ Thuật?</div>
+                      <div id="previewSupportDesc" style="font-size: 12px; color: #64748b; margin-bottom: 8px;">Đội ngũ kỹ sư cơ điện tử của ITC sẵn sàng hỗ trợ bạn 24/7.</div>
+                      <div id="previewSupportPhone" style="color: #0052cc; font-weight: 800; font-size: 14.5px; margin-bottom: 8px;">0983 684 968</div>
+                      <button type="button" id="previewSupportBtn" class="btn btn-primary btn-sm" style="width: 100%; pointer-events: none; opacity: 0.9; text-align: center;">Gửi Yêu Cầu Báo Giá</button>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="btnSaveSettings">
+                  Cập Nhật Thông Tin
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlights / Capacity Profile Management Card (Tối thiểu 3, tối đa 5) -->
+        <div class="card" style="margin-top: 30px;">
+          <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <h3 class="card-title" style="margin: 0;">📊 Hồ Sơ Năng Lực Nổi Bật (Stats Bar / Năng Lực Doanh Nghiệp)</h3>
+                <span class="badge" id="highlightCountBadge" style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;">
+                  4 / 5 mục
+                </span>
+              </div>
+              <div style="font-size: 12.5px; color: var(--admin-text-muted); margin-top: 4px;">
+                Hiển thị tại thanh thống kê năng lực nổi bật trên Trang Chủ Website (Quy định: <strong>tối thiểu 3 thông tin</strong>, <strong>tối đa 5 thông tin</strong>).
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-secondary" id="btnAddHighlight" style="display: flex; align-items: center; gap: 6px;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              <span>Thêm Thông Tin Năng Lực</span>
+            </button>
+          </div>
+
+          <div style="padding: 24px;">
+            <!-- Live Preview of Stats Bar -->
+            <div style="margin-bottom: 24px;">
+              <div style="font-size: 13px; font-weight: 700; color: var(--admin-sidebar-bg); margin-bottom: 8px;">
+                👁️ Xem trước giao diện thực tế trên Trang Chủ:
+              </div>
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: 22px 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+                <div id="previewStatsGrid" class="stats-grid" style="display: grid; gap: 16px;"></div>
+              </div>
+            </div>
+
+            <!-- List of Highlight Items -->
+            <div id="highlightsList" style="display: flex; flex-direction: column; gap: 16px;"></div>
+
+            <!-- Action buttons -->
+            <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--admin-border);">
+              <button type="button" class="btn btn-primary" id="btnSaveHighlights" style="padding: 11px 24px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>Lưu Thay Đổi Hồ Sơ Năng Lực</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manufacturing Capabilities Card (Ảnh 2: Hạ Tầng Nhà Máy & Công Nghệ Gia Công - Tối thiểu 3, tối đa 5) -->
+        <div class="card" style="margin-top: 30px;">
+          <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <h3 class="card-title" style="margin: 0;">🏭 Hạ Tầng Nhà Máy & Công Nghệ Gia Công (Năng Lực Sản Xuất - Ảnh 2)</h3>
+                <span class="badge" id="capCountBadge" style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;">
+                  3 / 5 mục
+                </span>
+              </div>
+              <div style="font-size: 12.5px; color: var(--admin-text-muted); margin-top: 4px;">
+                Hiển thị khối "Hạ Tầng Nhà Máy & Công Nghệ Gia Công" trên nền tối tại Trang Chủ Website (Quy định: <strong>tối thiểu 3 thông tin</strong>, <strong>tối đa 5 thông tin</strong>).
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-secondary" id="btnAddCapability" style="display: flex; align-items: center; gap: 6px;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              <span>Thêm Hạng Mục Năng Lực</span>
+            </button>
+          </div>
+
+          <div style="padding: 24px;">
+            <!-- Header Titles Edit Box -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 18px; margin-bottom: 24px;">
+              <div style="font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 12px; text-transform: uppercase;">
+                Tiêu đề & Giới thiệu chung phần Hạ Tầng Nhà Máy:
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 12px;">
+                <div>
+                  <label class="form-label" style="font-size: 12px;">Tiêu đề phụ (Subtitle)</label>
+                  <input type="text" id="capSectionSubtitle" class="form-control" value="Năng lực sản xuất" placeholder="Ví dụ: Năng lực sản xuất">
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 12px;">Tiêu đề chính (Main Title)</label>
+                  <input type="text" id="capSectionTitle" class="form-control" value="Hạ Tầng Nhà Máy & Công Nghệ Gia Công" placeholder="Ví dụ: Hạ Tầng Nhà Máy & Công Nghệ Gia Công">
+                </div>
+              </div>
+              <div>
+                <label class="form-label" style="font-size: 12px;">Đoạn văn mô tả (Description)</label>
+                <textarea id="capSectionDesc" class="form-control" rows="2" placeholder="Hệ thống máy móc hiện đại và đội ngũ kỹ sư cơ điện tử giàu kinh nghiệm đảm bảo chất lượng chuẩn xác đến từng micron."></textarea>
+              </div>
+            </div>
+
+            <!-- Live Dark-Mode Preview -->
+            <div style="margin-bottom: 24px;">
+              <div style="font-size: 13px; font-weight: 700; color: var(--admin-sidebar-bg); margin-bottom: 8px;">
+                👁️ Xem trước giao diện thực tế (Nền tối như trên Trang Chủ - Ảnh 2):
+              </div>
+              <div style="background: #0b1e36; border-radius: var(--radius-lg); padding: 28px 24px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 6px 20px rgba(0,0,0,0.15);">
+                <div style="text-align: center; margin-bottom: 22px;">
+                  <span id="previewCapSubtitle" style="color: #38bdf8; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">NĂNG LỰC SẢN XUẤT</span>
+                  <h3 id="previewCapTitle" style="color: #ffffff; font-size: 20px; font-weight: 800; margin: 4px 0 8px 0;">Hạ Tầng Nhà Máy & Công Nghệ Gia Công</h3>
+                  <p id="previewCapDesc" style="color: #94a3b8; font-size: 13px; max-width: 650px; margin: 0 auto; line-height: 1.5;">Hệ thống máy móc hiện đại và đội ngũ kỹ sư cơ điện tử giàu kinh nghiệm đảm bảo chất lượng chuẩn xác đến từng micron.</p>
+                </div>
+                <div id="previewCapGrid" style="display: grid; gap: 16px;"></div>
+              </div>
+            </div>
+
+            <!-- List of Capability Items (3 to 5 items) -->
+            <div id="capabilitiesList" style="display: flex; flex-direction: column; gap: 16px;"></div>
+
+            <!-- Action buttons -->
+            <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--admin-border);">
+              <button type="button" class="btn btn-primary" id="btnSaveCapabilities" style="padding: 11px 24px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>Lưu Thay Đổi Hạ Tầng Nhà Máy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/admin/js/auth.js"></script>
+  <script type="module">
+    import { adminApi } from '/admin/js/api.js';
+    import { showToast, applyAdminBrand } from '/admin/js/auth.js';
+
+    let currentLogoUrl = '/images/itc_logo.png';
+    let stagedLogoFile = null;
+    let stagedLogoBase64 = null;
+    let currentHighlights = [];
+
+    const currentLogoPreview = document.getElementById('currentLogoPreview');
+    const currentLogoPath = document.getElementById('currentLogoPath');
+    const logoDropzone = document.getElementById('logoDropzone');
+    const logoFileInput = document.getElementById('logoFileInput');
+    const logoSelectedBox = document.getElementById('logoSelectedBox');
+    const logoSelectedThumb = document.getElementById('logoSelectedThumb');
+    const logoSelectedName = document.getElementById('logoSelectedName');
+    const logoSelectedSize = document.getElementById('logoSelectedSize');
+    const btnCancelSelectedLogo = document.getElementById('btnCancelSelectedLogo');
+    const btnUploadLogo = document.getElementById('btnUploadLogo');
+    const btnResetDefaultLogo = document.getElementById('btnResetDefaultLogo');
+
+    // Highlights / Capacity Profile Logic (Tối thiểu 3, Tối đa 5 mục)
+    const ICON_CONFIG = [
+      { id: 'badge', label: 'Chữ số nổi bật (Ví dụ: 15+, 20+, 100%)' },
+      { id: 'doc', label: 'Dự án / Chuyển giao (Icon Tài liệu)' },
+      { id: 'factory', label: 'Nhà máy / Diện tích (Icon Nhà xưởng)' },
+      { id: 'iso', label: 'Tiêu chuẩn chất lượng (Icon Chứng nhận ISO)' },
+      { id: 'robot', label: 'Tự động hóa / Robot (Icon Robot)' },
+      { id: 'users', label: 'Đội ngũ kỹ sư (Icon Nhân sự/Kỹ sư)' },
+      { id: 'cog', label: 'Gia công chính xác (Icon Bánh răng Cơ khí)' }
+    ];
+
+    const ICON_SVGS = {
+      doc: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>`,
+      factory: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>`,
+      iso: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`,
+      robot: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h4a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h4V5.72A2 2 0 0 1 10 4a2 2 0 0 1 2-2m-3 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-6 5h6v1.5H9V16z"/></svg>`,
+      users: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>`,
+      cog: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>`
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function updateHighlightsBadge() {
+      const badge = document.getElementById('highlightCountBadge');
+      const btnAdd = document.getElementById('btnAddHighlight');
+      const count = currentHighlights.length;
+      if (badge) {
+        badge.textContent = `${count} / 5 mục (Tối thiểu 3, Tối đa 5)`;
+        if (count >= 5) {
+          badge.style.background = '#fef3c7';
+          badge.style.color = '#92400e';
+          badge.style.borderColor = '#fde68a';
+        } else if (count <= 3) {
+          badge.style.background = '#eff6ff';
+          badge.style.color = '#1d4ed8';
+          badge.style.borderColor = '#bfdbfe';
+        } else {
+          badge.style.background = '#f0fdf4';
+          badge.style.color = '#15803d';
+          badge.style.borderColor = '#bbf7d0';
+        }
+      }
+      if (btnAdd) {
+        if (count >= 5) {
+          btnAdd.disabled = true;
+          btnAdd.style.opacity = '0.5';
+          btnAdd.style.cursor = 'not-allowed';
+          btnAdd.title = 'Đã đạt tối đa 5 mục năng lực';
+        } else {
+          btnAdd.disabled = false;
+          btnAdd.style.opacity = '1';
+          btnAdd.style.cursor = 'pointer';
+          btnAdd.title = 'Thêm thông tin năng lực';
+        }
+      }
+    }
+
+    function renderLivePreview() {
+      const previewGrid = document.getElementById('previewStatsGrid');
+      if (!previewGrid) return;
+      const count = Math.min(5, Math.max(1, currentHighlights.length));
+      previewGrid.style.gridTemplateColumns = `repeat(${count}, 1fr)`;
+
+      previewGrid.innerHTML = currentHighlights.map((item, idx) => {
+        let iconHtml = '';
+        if (item.iconType === 'badge' || !ICON_SVGS[item.iconType]) {
+          const badgeText = item.iconValue || item.title?.split(' ')?.[0] || '15+';
+          iconHtml = `<span style="font-size: 18px; font-weight: 800; color: #0052cc;">${escapeHtml(badgeText)}</span>`;
+        } else {
+          iconHtml = ICON_SVGS[item.iconType];
+        }
+
+        const isLast = idx === currentHighlights.length - 1;
+        const borderStyle = isLast ? 'style="border-right: none;"' : '';
+
+        return `
+          <div class="preview-stat-item" ${borderStyle}>
+            <div class="preview-stat-icon">${iconHtml}</div>
+            <div>
+              <div class="preview-stat-number">${escapeHtml(item.title || '(Chưa nhập tiêu đề)')}</div>
+              <div class="preview-stat-label">${escapeHtml(item.subtitle || '(Chưa nhập mô tả)')}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderHighlightsUI() {
+      updateHighlightsBadge();
+      renderLivePreview();
+
+      const container = document.getElementById('highlightsList');
+      if (!container) return;
+
+      if (currentHighlights.length === 0) {
+        container.innerHTML = '<div style="color: var(--admin-text-muted); text-align: center; padding: 20px;">Chưa có thông tin hồ sơ năng lực.</div>';
+        return;
+      }
+
+      container.innerHTML = currentHighlights.map((item, idx) => {
+        const isBadge = item.iconType === 'badge';
+        const canDelete = currentHighlights.length > 3;
+
+        const optionsHtml = ICON_CONFIG.map(opt => `
+          <option value="${opt.id}" ${item.iconType === opt.id ? 'selected' : ''}>
+            ${opt.label}
+          </option>
+        `).join('');
+
+        return `
+          <div class="highlight-card-row" data-index="${idx}">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <label style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+                  Mục #${idx + 1} - Biểu Tượng
+                </label>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <select class="form-control hl-icon-type" data-index="${idx}" style="font-size: 13px; font-weight: 500;">
+                  ${optionsHtml}
+                </select>
+                <input type="text" class="form-control hl-icon-val" data-index="${idx}" value="${escapeHtml(item.iconValue || '')}" placeholder="Ký hiệu (15+)" style="width: 100px; font-size: 13px; ${isBadge ? '' : 'display: none;'}" title="Ký hiệu hiển thị trong ô vuông">
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+                Số Liệu / Tiêu Đề Nổi Bật (*)
+              </label>
+              <input type="text" class="form-control hl-title" data-index="${idx}" value="${escapeHtml(item.title || '')}" placeholder="Ví dụ: 15+ Năm, 650+, ISO 9001..." required style="font-size: 13px; font-weight: 600;">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+                Diễn Giải Chi Tiết / Phụ Đề (*)
+              </label>
+              <input type="text" class="form-control hl-subtitle" data-index="${idx}" value="${escapeHtml(item.subtitle || '')}" placeholder="Ví dụ: Kinh nghiệm chế tạo máy & Jig..." required style="font-size: 13px;">
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: flex-end;">
+              <button type="button" class="btn btn-sm hl-btn-delete" data-index="${idx}" ${canDelete ? '' : 'disabled'} style="padding: 8px 12px; font-size: 12px; border-radius: var(--radius-sm); ${canDelete ? 'background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5;' : 'background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0; cursor: not-allowed;'}" title="${canDelete ? 'Xóa mục này' : 'Tối thiểu 3 mục (không thể xóa thêm)'}">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <span>Xóa</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Wire inputs
+      container.querySelectorAll('.hl-icon-type').forEach(select => {
+        select.addEventListener('change', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          const val = e.target.value;
+          currentHighlights[idx].iconType = val;
+          const valInput = container.querySelector(`.hl-icon-val[data-index="${idx}"]`);
+          if (valInput) {
+            valInput.style.display = val === 'badge' ? 'block' : 'none';
+          }
+          renderLivePreview();
+        });
+      });
+
+      container.querySelectorAll('.hl-icon-val').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          currentHighlights[idx].iconValue = e.target.value;
+          renderLivePreview();
+        });
+      });
+
+      container.querySelectorAll('.hl-title').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          currentHighlights[idx].title = e.target.value;
+          renderLivePreview();
+        });
+      });
+
+      container.querySelectorAll('.hl-subtitle').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          currentHighlights[idx].subtitle = e.target.value;
+          renderLivePreview();
+        });
+      });
+
+      container.querySelectorAll('.hl-btn-delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = parseInt(e.currentTarget.dataset.index, 10);
+          if (currentHighlights.length <= 3) {
+            showToast('Hồ sơ năng lực yêu cầu tối thiểu 3 thông tin, không thể xóa thêm.', 'warning', 'Tối Thiểu 3 Mục');
+            return;
+          }
+          currentHighlights.splice(idx, 1);
+          renderHighlightsUI();
+          showToast('Đã xóa 1 mục. Nhấn "Lưu Thay Đổi Hồ Sơ Năng Lực" để áp dụng lên trang chủ.', 'info', 'Đã Xóa Mục');
+        });
+      });
+    }
+
+    // Add Highlight item handler
+    const btnAddHighlight = document.getElementById('btnAddHighlight');
+    if (btnAddHighlight) {
+      btnAddHighlight.addEventListener('click', () => {
+        if (currentHighlights.length >= 5) {
+          showToast('Đã đạt tối đa 5 thông tin năng lực. Không thể thêm nữa.', 'warning', 'Tối Đa 5 Mục');
+          return;
+        }
+
+        const newId = 'hl-' + Date.now();
+        const availableIcons = ['robot', 'users', 'cog', 'badge', 'doc', 'factory', 'iso'];
+        const existingTypes = new Set(currentHighlights.map(h => h.iconType));
+        const pickType = availableIcons.find(t => !existingTypes.has(t)) || 'badge';
+
+        currentHighlights.push({
+          id: newId,
+          iconType: pickType,
+          iconValue: pickType === 'badge' ? '99+' : pickType,
+          title: 'Thông tin mới',
+          subtitle: 'Mô tả tóm tắt năng lực'
+        });
+
+        renderHighlightsUI();
+        showToast('Đã thêm 1 mục mới. Bạn có thể chỉnh sửa nội dung và bấm "Lưu Thay Đổi".', 'success', 'Thêm Mục Mới');
+      });
+    }
+
+    // Save Highlights button handler
+    const btnSaveHighlights = document.getElementById('btnSaveHighlights');
+    if (btnSaveHighlights) {
+      btnSaveHighlights.addEventListener('click', async () => {
+        if (currentHighlights.length < 3) {
+          showToast('Hồ sơ năng lực yêu cầu tối thiểu 3 thông tin!', 'warning', 'Chưa Đủ Số Lượng');
+          return;
+        }
+        if (currentHighlights.length > 5) {
+          showToast('Hồ sơ năng lực cho phép tối đa 5 thông tin!', 'warning', 'Vượt Quá Số Lượng');
+          return;
+        }
+
+        for (let i = 0; i < currentHighlights.length; i++) {
+          const item = currentHighlights[i];
+          if (!item.title || !item.title.trim()) {
+            showToast(`Mục #${i + 1} chưa nhập số liệu/tiêu đề!`, 'warning', 'Thiếu Dữ Liệu');
+            return;
+          }
+          if (!item.subtitle || !item.subtitle.trim()) {
+            showToast(`Mục #${i + 1} chưa nhập mô tả chi tiết!`, 'warning', 'Thiếu Dữ Liệu');
+            return;
+          }
+        }
+
+        btnSaveHighlights.disabled = true;
+        const originalText = btnSaveHighlights.innerHTML;
+        btnSaveHighlights.innerHTML = `
+          <svg class="spin-animation" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Đang Lưu Cập Nhật...</span>
+        `;
+
+        try {
+          const res = await adminApi.updateSettings({ highlights: currentHighlights });
+          if (res.success) {
+            const cachedSettings = JSON.parse(localStorage.getItem('webitc_settings') || '{}');
+            cachedSettings.highlights = currentHighlights;
+            localStorage.setItem('webitc_settings', JSON.stringify(cachedSettings));
+
+            showToast('Đã lưu và đồng bộ Hồ sơ năng lực (3 - 5 thông tin) lên toàn bộ Website thành công!', 'success', 'Cập Nhật Thành Công');
+          } else {
+            showToast(res.message || 'Lỗi khi lưu dữ liệu lên máy chủ.', 'error', 'Thất Bại');
+          }
+        } catch (err) {
+          showToast('Lỗi kết nối máy chủ.', 'error', 'Lỗi Kết Nối');
+        } finally {
+          btnSaveHighlights.disabled = false;
+          btnSaveHighlights.innerHTML = originalText;
+        }
+      });
+    }
+
+    // Factory Capabilities (Hạ Tầng Nhà Máy & Công Nghệ Gia Công - Ảnh 2) Logic (Tối thiểu 3, Tối đa 5 mục)
+    const CAP_ICON_CONFIG = [
+      { id: 'cnc', label: 'Cơ khí / CNC 3-5 Trục (Icon Dụng Cụ/Cờ Lê)' },
+      { id: 'cmm', label: 'Đo kiểm CMM / 3D (Icon Khung Đo Tọa Độ)' },
+      { id: 'iso', label: 'Chứng nhận chất lượng (Icon ISO/Tiêu Chuẩn)' },
+      { id: 'robot', label: 'Robot / Tự động hóa (Icon Robot Tự Động)' },
+      { id: 'factory', label: 'Quy mô nhà máy (Icon Nhà Xưởng Sản Xuất)' },
+      { id: 'cog', label: 'Gia công chính xác (Icon Bánh Răng Cơ Khí)' }
+    ];
+
+    const CAP_ICON_SVGS = {
+      cnc: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>`,
+      cmm: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>`,
+      iso: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`,
+      robot: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h4a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h4V5.72A2 2 0 0 1 10 4a2 2 0 0 1 2-2m-3 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-6 5h6v1.5H9V16z"/></svg>`,
+      factory: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>`,
+      cog: `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>`
+    };
+
+    let currentFactoryCapabilities = {
+      subtitle: 'Năng lực sản xuất',
+      title: 'Hạ Tầng Nhà Máy & Công Nghệ Gia Công',
+      desc: 'Hệ thống máy móc hiện đại và đội ngũ kỹ sư cơ điện tử giàu kinh nghiệm đảm bảo chất lượng chuẩn xác đến từng micron.',
+      items: [
+        { id: 'cap-1', icon: 'cnc', title: 'Trung tâm gia công CNC 3 - 5 Trục', desc: 'Hơn 25 máy phay CNC và tiện CNC Makino, Mazak, Moriseiki nhập khẩu từ Nhật Bản. Đảm bảo gia công các chi tiết Jig và đồ gá 3D dung sai ±0.005mm.' },
+        { id: 'cap-2', icon: 'cmm', title: 'Phòng Đo Kiểm CMM Chuẩn Xác', desc: 'Trang bị máy đo tọa độ 3 chiều CMM Mitutoyo Crysta-Apex, máy đo biên dạng 2D, panme điện tử số tử. Mọi sản phẩm xuất xưởng đều có báo cáo kiểm định chất lượng CMM Report.' },
+        { id: 'cap-3', icon: 'iso', title: 'Chứng Nhận ISO 9001:2015', desc: 'Quy trình sản xuất, kiểm soát chất lượng nguyên vật liệu đầu vào và nghiệm thu chạy thử (FAT / SAT) tuân thủ nghiêm ngặt tiêu chuẩn quản lý chất lượng quốc tế.' }
+      ]
+    };
+
+    function formatPhone(val) {
+      if (!val) return '';
+      const digits = String(val).replace(/\D/g, '');
+      if (digits.length === 10) return digits.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
+      if (digits.length === 11) return digits.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
+      return val;
+    }
+
+    function updateLiveSupportPreview() {
+      const title = document.getElementById('settingSupportTitle').value.trim() || 'Cần Tư Vấn Kỹ Thuật?';
+      const desc = document.getElementById('settingSupportDesc').value.trim() || 'Đội ngũ kỹ sư cơ điện tử của ITC sẵn sàng hỗ trợ bạn 24/7.';
+      const btn = document.getElementById('settingSupportBtn').value.trim() || 'Gửi Yêu Cầu Báo Giá';
+      const phone = document.getElementById('settingHotline').value.trim() || '0983684968';
+
+      const pTitle = document.getElementById('previewSupportTitle');
+      const pDesc = document.getElementById('previewSupportDesc');
+      const pPhone = document.getElementById('previewSupportPhone');
+      const pBtn = document.getElementById('previewSupportBtn');
+
+      if (pTitle) pTitle.textContent = title;
+      if (pDesc) pDesc.textContent = desc;
+      if (pPhone) pPhone.textContent = formatPhone(phone);
+      if (pBtn) pBtn.textContent = btn;
+    }
+
+    function updateCapBadge() {
+      const badge = document.getElementById('capCountBadge');
+      const btnAdd = document.getElementById('btnAddCapability');
+      const count = (currentFactoryCapabilities.items || []).length;
+      if (badge) {
+        badge.textContent = `${count} / 5 mục (Tối thiểu 3, Tối đa 5)`;
+        if (count >= 5) {
+          badge.style.background = '#fef3c7';
+          badge.style.color = '#92400e';
+          badge.style.borderColor = '#fde68a';
+        } else if (count <= 3) {
+          badge.style.background = '#eff6ff';
+          badge.style.color = '#1d4ed8';
+          badge.style.borderColor = '#bfdbfe';
+        } else {
+          badge.style.background = '#f0fdf4';
+          badge.style.color = '#15803d';
+          badge.style.borderColor = '#bbf7d0';
+        }
+      }
+      if (btnAdd) {
+        if (count >= 5) {
+          btnAdd.disabled = true;
+          btnAdd.style.opacity = '0.5';
+          btnAdd.style.cursor = 'not-allowed';
+          btnAdd.title = 'Đã đạt tối đa 5 mục hạ tầng';
+        } else {
+          btnAdd.disabled = false;
+          btnAdd.style.opacity = '1';
+          btnAdd.style.cursor = 'pointer';
+          btnAdd.title = 'Thêm hạng mục năng lực';
+        }
+      }
+    }
+
+    function renderLiveCapPreview() {
+      const previewSubtitle = document.getElementById('previewCapSubtitle');
+      const previewTitle = document.getElementById('previewCapTitle');
+      const previewDesc = document.getElementById('previewCapDesc');
+      const previewGrid = document.getElementById('previewCapGrid');
+
+      if (previewSubtitle) previewSubtitle.textContent = currentFactoryCapabilities.subtitle || 'NĂNG LỰC SẢN XUẤT';
+      if (previewTitle) previewTitle.textContent = currentFactoryCapabilities.title || 'Hạ Tầng Nhà Máy & Công Nghệ Gia Công';
+      if (previewDesc) previewDesc.textContent = currentFactoryCapabilities.desc || '';
+
+      if (!previewGrid) return;
+      const items = currentFactoryCapabilities.items || [];
+      const count = Math.min(5, Math.max(1, items.length));
+      if (count <= 3) {
+        previewGrid.style.gridTemplateColumns = `repeat(${count}, 1fr)`;
+      } else {
+        previewGrid.style.gridTemplateColumns = `repeat(${count}, minmax(180px, 1fr))`;
+      }
+
+      previewGrid.innerHTML = items.map(item => {
+        const iconSvg = CAP_ICON_SVGS[item.icon] || CAP_ICON_SVGS.cnc;
+        return `
+          <div class="preview-cap-card">
+            <div class="preview-cap-icon">${iconSvg}</div>
+            <div class="preview-cap-title">${escapeHtml(item.title || '(Chưa nhập tiêu đề)')}</div>
+            <div class="preview-cap-desc">${escapeHtml(item.desc || '(Chưa nhập mô tả)')}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderCapabilitiesUI() {
+      updateCapBadge();
+      renderLiveCapPreview();
+
+      const container = document.getElementById('capabilitiesList');
+      if (!container) return;
+
+      const items = currentFactoryCapabilities.items || [];
+      if (items.length === 0) {
+        container.innerHTML = '<div style="color: var(--admin-text-muted); text-align: center; padding: 20px;">Chưa có thông tin hạ tầng nhà máy.</div>';
+        return;
+      }
+
+      container.innerHTML = items.map((item, idx) => {
+        const canDelete = items.length > 3;
+        const optionsHtml = CAP_ICON_CONFIG.map(opt => `
+          <option value="${opt.id}" ${item.icon === opt.id ? 'selected' : ''}>
+            ${opt.label}
+          </option>
+        `).join('');
+
+        return `
+          <div class="cap-card-row" data-index="${idx}">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+                Mục #${idx + 1} - Biểu Tượng
+              </label>
+              <select class="form-control cap-icon-select" data-index="${idx}" style="font-size: 13px; font-weight: 500;">
+                ${optionsHtml}
+              </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+                Tên Hạng Mục / Tiêu Đề (*)
+              </label>
+              <input type="text" class="form-control cap-title" data-index="${idx}" value="${escapeHtml(item.title || '')}" placeholder="Ví dụ: Trung tâm gia công CNC 3 - 5 Trục..." required style="font-size: 13px; font-weight: 600;">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;">
+                Mô Tả Năng Lực Chi Tiết (*)
+              </label>
+              <textarea class="form-control cap-desc" data-index="${idx}" rows="2" placeholder="Ví dụ: Hơn 25 máy phay CNC và tiện CNC..." required style="font-size: 13px;">${escapeHtml(item.desc || '')}</textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: flex-end; padding-top: 24px;">
+              <button type="button" class="btn btn-sm cap-btn-delete" data-index="${idx}" ${canDelete ? '' : 'disabled'} style="padding: 8px 12px; font-size: 12px; border-radius: var(--radius-sm); ${canDelete ? 'background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5;' : 'background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0; cursor: not-allowed;'}" title="${canDelete ? 'Xóa mục này' : 'Tối thiểu 3 mục (không thể xóa thêm)'}">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <span>Xóa</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Wire inputs
+      container.querySelectorAll('.cap-icon-select').forEach(sel => {
+        sel.addEventListener('change', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          currentFactoryCapabilities.items[idx].icon = e.target.value;
+          renderLiveCapPreview();
+        });
+      });
+
+      container.querySelectorAll('.cap-title').forEach(inp => {
+        inp.addEventListener('input', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          currentFactoryCapabilities.items[idx].title = e.target.value;
+          renderLiveCapPreview();
+        });
+      });
+
+      container.querySelectorAll('.cap-desc').forEach(inp => {
+        inp.addEventListener('input', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          currentFactoryCapabilities.items[idx].desc = e.target.value;
+          renderLiveCapPreview();
+        });
+      });
+
+      container.querySelectorAll('.cap-btn-delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = parseInt(e.currentTarget.dataset.index, 10);
+          if (currentFactoryCapabilities.items.length <= 3) {
+            showToast('Hạ tầng nhà máy yêu cầu tối thiểu 3 thông tin, không thể xóa thêm.', 'warning', 'Tối Thiểu 3 Mục');
+            return;
+          }
+          currentFactoryCapabilities.items.splice(idx, 1);
+          renderCapabilitiesUI();
+          showToast('Đã xóa 1 mục. Nhấn "Lưu Thay Đổi Hạ Tầng Nhà Máy" để áp dụng lên trang chủ.', 'info', 'Đã Xóa Mục');
+        });
+      });
+    }
+
+    // Section title inputs wire
+    document.getElementById('capSectionSubtitle')?.addEventListener('input', (e) => {
+      currentFactoryCapabilities.subtitle = e.target.value;
+      renderLiveCapPreview();
+    });
+    document.getElementById('capSectionTitle')?.addEventListener('input', (e) => {
+      currentFactoryCapabilities.title = e.target.value;
+      renderLiveCapPreview();
+    });
+    document.getElementById('capSectionDesc')?.addEventListener('input', (e) => {
+      currentFactoryCapabilities.desc = e.target.value;
+      renderLiveCapPreview();
+    });
+
+    // Add Capability item handler
+    const btnAddCapability = document.getElementById('btnAddCapability');
+    if (btnAddCapability) {
+      btnAddCapability.addEventListener('click', () => {
+        if (!currentFactoryCapabilities.items) currentFactoryCapabilities.items = [];
+        if (currentFactoryCapabilities.items.length >= 5) {
+          showToast('Đã đạt tối đa 5 thông tin năng lực hạ tầng. Không thể thêm nữa.', 'warning', 'Tối Đa 5 Mục');
+          return;
+        }
+
+        const newId = 'cap-' + Date.now();
+        const availableIcons = ['cnc', 'cmm', 'iso', 'robot', 'factory', 'cog'];
+        const existingIcons = new Set(currentFactoryCapabilities.items.map(c => c.icon));
+        const pickIcon = availableIcons.find(ic => !existingIcons.has(ic)) || 'cnc';
+
+        currentFactoryCapabilities.items.push({
+          id: newId,
+          icon: pickIcon,
+          title: 'Hạng mục gia công mới',
+          desc: 'Mô tả thông số máy móc, độ chính xác hoặc chứng nhận chất lượng'
+        });
+
+        renderCapabilitiesUI();
+        showToast('Đã thêm 1 mục hạ tầng mới. Bạn có thể chỉnh sửa nội dung và bấm "Lưu Thay Đổi".', 'success', 'Thêm Mục Mới');
+      });
+    }
+
+    // Save Capabilities button handler
+    const btnSaveCapabilities = document.getElementById('btnSaveCapabilities');
+    if (btnSaveCapabilities) {
+      btnSaveCapabilities.addEventListener('click', async () => {
+        const items = currentFactoryCapabilities.items || [];
+        if (items.length < 3) {
+          showToast('Hạ tầng nhà máy yêu cầu tối thiểu 3 thông tin!', 'warning', 'Chưa Đủ Số Lượng');
+          return;
+        }
+        if (items.length > 5) {
+          showToast('Hạ tầng nhà máy cho phép tối đa 5 thông tin!', 'warning', 'Vượt Quá Số Lượng');
+          return;
+        }
+
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          if (!item.title || !item.title.trim()) {
+            showToast(`Mục #${i + 1} chưa nhập tên hạng mục/tiêu đề!`, 'warning', 'Thiếu Dữ Liệu');
+            return;
+          }
+          if (!item.desc || !item.desc.trim()) {
+            showToast(`Mục #${i + 1} chưa nhập mô tả chi tiết!`, 'warning', 'Thiếu Dữ Liệu');
+            return;
+          }
+        }
+
+        btnSaveCapabilities.disabled = true;
+        const originalText = btnSaveCapabilities.innerHTML;
+        btnSaveCapabilities.innerHTML = `
+          <svg class="spin-animation" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Đang Lưu Cập Nhật...</span>
+        `;
+
+        try {
+          const res = await adminApi.updateSettings({ factoryCapabilities: currentFactoryCapabilities });
+          if (res.success) {
+            const cachedSettings = JSON.parse(localStorage.getItem('webitc_settings') || '{}');
+            cachedSettings.factoryCapabilities = currentFactoryCapabilities;
+            localStorage.setItem('webitc_settings', JSON.stringify(cachedSettings));
+
+            showToast('Đã lưu và đồng bộ Hạ tầng nhà máy & Công nghệ gia công (Ảnh 2) lên Trang chủ thành công!', 'success', 'Cập Nhật Thành Công');
+          } else {
+            showToast(res.message || 'Lỗi khi lưu dữ liệu lên máy chủ.', 'error', 'Thất Bại');
+          }
+        } catch (err) {
+          showToast('Lỗi kết nối máy chủ.', 'error', 'Lỗi Kết Nối');
+        } finally {
+          btnSaveCapabilities.disabled = false;
+          btnSaveCapabilities.innerHTML = originalText;
+        }
+      });
+    }
+
+    // Live preview event listeners for support box
+    ['settingSupportTitle', 'settingSupportDesc', 'settingSupportBtn', 'settingHotline'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', updateLiveSupportPreview);
+    });
+
+    // Load Company Settings
+    async function loadCompanySettings() {
+      try {
+        const res = await adminApi.getSettings();
+        if (res.success && res.data) {
+          const s = res.data;
+          document.getElementById('settingCompanyName').value = s.companyName || '';
+          document.getElementById('settingBrandName').value = s.brandName || '';
+          document.getElementById('settingTaxCode').value = s.taxCode || '';
+          document.getElementById('settingHotline').value = s.hotline || '';
+          document.getElementById('settingEmail').value = s.email || '';
+          document.getElementById('settingRecoveryEmail').value = s.recoveryEmail || s.email || '';
+          document.getElementById('settingAddress').value = s.address || '';
+          document.getElementById('settingFactoryAddress').value = s.factoryAddress || '';
+          document.getElementById('settingSlogan').value = s.slogan || '';
+
+          const sw = s.supportWidget || {
+            title: 'Cần Tư Vấn Kỹ Thuật?',
+            desc: 'Đội ngũ kỹ sư cơ điện tử của ITC sẵn sàng hỗ trợ bạn 24/7.',
+            btnText: 'Gửi Yêu Cầu Báo Giá'
+          };
+          document.getElementById('settingSupportTitle').value = sw.title || '';
+          document.getElementById('settingSupportDesc').value = sw.desc || '';
+          document.getElementById('settingSupportBtn').value = sw.btnText || '';
+          updateLiveSupportPreview();
+
+          if (s.factoryCapabilities) {
+            currentFactoryCapabilities = {
+              subtitle: s.factoryCapabilities.subtitle || 'Năng lực sản xuất',
+              title: s.factoryCapabilities.title || 'Hạ Tầng Nhà Máy & Công Nghệ Gia Công',
+              desc: s.factoryCapabilities.desc || 'Hệ thống máy móc hiện đại và đội ngũ kỹ sư cơ điện tử giàu kinh nghiệm đảm bảo chất lượng chuẩn xác đến từng micron.',
+              items: Array.isArray(s.factoryCapabilities.items) && s.factoryCapabilities.items.length >= 3 ? s.factoryCapabilities.items : [
+                { id: 'cap-1', icon: 'cnc', title: 'Trung tâm gia công CNC 3 - 5 Trục', desc: 'Hơn 25 máy phay CNC và tiện CNC Makino, Mazak, Moriseiki nhập khẩu từ Nhật Bản. Đảm bảo gia công các chi tiết Jig và đồ gá 3D dung sai ±0.005mm.' },
+                { id: 'cap-2', icon: 'cmm', title: 'Phòng Đo Kiểm CMM Chuẩn Xác', desc: 'Trang bị máy đo tọa độ 3 chiều CMM Mitutoyo Crysta-Apex, máy đo biên dạng 2D, panme điện tử số tử. Mọi sản phẩm xuất xưởng đều có báo cáo kiểm định chất lượng CMM Report.' },
+                { id: 'cap-3', icon: 'iso', title: 'Chứng Nhận ISO 9001:2015', desc: 'Quy trình sản xuất, kiểm soát chất lượng nguyên vật liệu đầu vào và nghiệm thu chạy thử (FAT / SAT) tuân thủ nghiêm ngặt tiêu chuẩn quản lý chất lượng quốc tế.' }
+              ]
+            };
+          }
+          document.getElementById('capSectionSubtitle').value = currentFactoryCapabilities.subtitle;
+          document.getElementById('capSectionTitle').value = currentFactoryCapabilities.title;
+          document.getElementById('capSectionDesc').value = currentFactoryCapabilities.desc;
+          renderCapabilitiesUI();
+
+          if (Array.isArray(s.highlights) && s.highlights.length >= 3) {
+            currentHighlights = s.highlights;
+          } else {
+            currentHighlights = [
+              { id: 'hl-1', iconType: 'badge', iconValue: '15+', title: '15+ Năm', subtitle: 'Kinh nghiệm chế tạo máy & Jig' },
+              { id: 'hl-2', iconType: 'doc', iconValue: 'doc', title: '650+', subtitle: 'Dự án chuyển giao thành công' },
+              { id: 'hl-3', iconType: 'factory', iconValue: 'factory', title: '8,500 m²', subtitle: 'Diện tích 02 nhà máy sản xuất' },
+              { id: 'hl-4', iconType: 'iso', iconValue: 'iso', title: 'ISO 9001', subtitle: 'Hệ thống quản lý chất lượng' }
+            ];
+          }
+          renderHighlightsUI();
+
+          if (s.logoUrl) {
+            currentLogoUrl = s.logoUrl;
+            currentLogoPreview.src = s.logoUrl;
+            currentLogoPath.textContent = s.logoUrl;
+          }
+        }
+      } catch (err) {}
+    }
+
+    // Logo File Selection & Preview Handling
+    function handleLogoFile(file) {
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        showToast('Vui lòng chọn tệp hình ảnh hợp lệ (PNG, JPG, SVG, WebP)!', 'warning', 'Tệp Không Hợp Lệ');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('Kích thước ảnh không được vượt quá 5MB!', 'warning', 'Tệp Quá Dung Lượng');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        stagedLogoFile = file;
+        stagedLogoBase64 = reader.result;
+
+        logoSelectedThumb.src = reader.result;
+        logoSelectedName.textContent = file.name;
+        logoSelectedSize.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+        logoSelectedBox.style.display = 'flex';
+        btnUploadLogo.disabled = false;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    logoDropzone.addEventListener('click', () => logoFileInput.click());
+    logoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) handleLogoFile(file);
+    });
+
+    // Drag & Drop
+    ['dragenter', 'dragover'].forEach(eventName => {
+      logoDropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        logoDropzone.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      logoDropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        logoDropzone.classList.remove('dragover');
+      });
+    });
+
+    logoDropzone.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      if (files && files.length > 0) {
+        handleLogoFile(files[0]);
+      }
+    });
+
+    btnCancelSelectedLogo.addEventListener('click', () => {
+      stagedLogoFile = null;
+      stagedLogoBase64 = null;
+      logoFileInput.value = '';
+      logoSelectedBox.style.display = 'none';
+      btnUploadLogo.disabled = true;
+    });
+
+    // Upload & Apply Logo
+    btnUploadLogo.addEventListener('click', async () => {
+      if (!stagedLogoFile || !stagedLogoBase64) return;
+
+      btnUploadLogo.disabled = true;
+      btnUploadLogo.innerHTML = `
+        <svg class="spin-animation" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        <span>Đang Tải Ảnh & Áp Dụng...</span>
+      `;
+
+      try {
+        // Step 1: Upload Image to /api/upload
+        const uploadRes = await adminApi.uploadImage(stagedLogoFile.name, stagedLogoBase64);
+        if (!uploadRes.success || !uploadRes.url) {
+          throw new Error(uploadRes.message || 'Lỗi khi tải ảnh lên máy chủ.');
+        }
+
+        const newLogoUrl = uploadRes.url;
+
+        // Step 2: Update database settings with logoUrl
+        const settingsRes = await adminApi.updateSettings({ logoUrl: newLogoUrl });
+        if (!settingsRes.success) {
+          throw new Error(settingsRes.message || 'Lỗi cập nhật cấu hình hệ thống.');
+        }
+
+        // Step 3: Update local state & storage
+        currentLogoUrl = newLogoUrl;
+        currentLogoPreview.src = newLogoUrl;
+        currentLogoPath.textContent = newLogoUrl;
+
+        const currentSettings = JSON.parse(localStorage.getItem('webitc_settings') || '{}');
+        currentSettings.logoUrl = newLogoUrl;
+        localStorage.setItem('webitc_settings', JSON.stringify(currentSettings));
+
+        // Step 4: Instantly update current page's sidebar and favicon
+        applyAdminBrand(currentSettings);
+
+        // Reset staged box
+        btnCancelSelectedLogo.click();
+
+        showToast('Đã đổi logo công ty thành công! Biểu trưng mới đã được cập nhật đồng bộ lên toàn bộ Website & CMS.', 'success', 'Cập Nhật Logo Thành Công');
+      } catch (err) {
+        showToast(err.message || 'Lỗi kết nối máy chủ khi lưu logo.', 'error', 'Thao Tác Thất Bại');
+      } finally {
+        btnUploadLogo.disabled = !stagedLogoFile;
+        btnUploadLogo.innerHTML = `
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span>Lưu & Áp Dụng Logo</span>
+        `;
+      }
+    });
+
+    // Reset Default Logo
+    btnResetDefaultLogo.addEventListener('click', async () => {
+      const defaultUrl = '/images/itc_logo.png';
+      if (currentLogoUrl === defaultUrl) {
+        showToast('Hệ thống hiện đang sử dụng logo gốc mặc định.', 'info', 'Đang Dùng Logo Gốc');
+        return;
+      }
+
+      if (!confirm('Bạn có chắc chắn muốn khôi phục lại Logo gốc mặc định của ITC TECHNOLOGY?')) {
+        return;
+      }
+
+      btnResetDefaultLogo.disabled = true;
+      try {
+        const res = await adminApi.updateSettings({ logoUrl: defaultUrl });
+        if (res.success) {
+          currentLogoUrl = defaultUrl;
+          currentLogoPreview.src = defaultUrl;
+          currentLogoPath.textContent = defaultUrl;
+
+          const currentSettings = JSON.parse(localStorage.getItem('webitc_settings') || '{}');
+          currentSettings.logoUrl = defaultUrl;
+          localStorage.setItem('webitc_settings', JSON.stringify(currentSettings));
+
+          applyAdminBrand(currentSettings);
+
+          showToast('Đã khôi phục về logo gốc ITC mặc định thành công!', 'success', 'Khôi Phục Thành Công');
+        } else {
+          showToast(res.message || 'Lỗi khôi phục logo.', 'error', 'Thất Bại');
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối máy chủ.', 'error', 'Lỗi Kết Nối');
+      } finally {
+        btnResetDefaultLogo.disabled = false;
+      }
+    });
+
+    // Save Settings
+    document.getElementById('companySettingsForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const hotlineVal = document.getElementById('settingHotline').value.trim();
+      const payload = {
+        companyName: document.getElementById('settingCompanyName').value.trim(),
+        brandName: document.getElementById('settingBrandName').value.trim(),
+        taxCode: document.getElementById('settingTaxCode').value.trim(),
+        hotline: hotlineVal,
+        hotlineDisplay: hotlineVal,
+        salesPhone: hotlineVal,
+        zaloLink: `https://zalo.me/${hotlineVal.replace(/\D/g, '')}`,
+        email: document.getElementById('settingEmail').value.trim(),
+        recoveryEmail: document.getElementById('settingRecoveryEmail').value.trim(),
+        address: document.getElementById('settingAddress').value.trim(),
+        factoryAddress: document.getElementById('settingFactoryAddress').value.trim(),
+        slogan: document.getElementById('settingSlogan').value.trim(),
+        supportWidget: {
+          title: document.getElementById('settingSupportTitle').value.trim() || 'Cần Tư Vấn Kỹ Thuật?',
+          desc: document.getElementById('settingSupportDesc').value.trim() || 'Đội ngũ kỹ sư cơ điện tử của ITC sẵn sàng hỗ trợ bạn 24/7.',
+          btnText: document.getElementById('settingSupportBtn').value.trim() || 'Gửi Yêu Cầu Báo Giá'
+        }
+      };
+
+      const btn = document.getElementById('btnSaveSettings');
+      btn.disabled = true;
+      try {
+        const res = await adminApi.updateSettings(payload);
+        if (res.success) {
+          const finalData = res.data || payload;
+          localStorage.setItem('webitc_settings', JSON.stringify(finalData));
+          applyAdminBrand(finalData);
+          showToast('Cập nhật thông tin công ty thành công! Dữ liệu đã được đồng bộ lên toàn bộ Website.', 'success', 'Cập Nhật Thành Công');
+        } else {
+          showToast(res.message || 'Lỗi cập nhật.', 'error', 'Thao Tác Thất Bại');
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối máy chủ.', 'error', 'Lỗi Kết Nối');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    // Change Password
+    document.getElementById('changePasswordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const oldPassword = document.getElementById('oldPassword').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmNew = document.getElementById('confirmNewPassword').value;
+
+      if (newPassword !== confirmNew) {
+        showToast('Mật khẩu mới và xác nhận mật khẩu không khớp!', 'warning', 'Kiểm Tra Mật Khẩu');
+        return;
+      }
+
+      if (newPassword.length < 6) {
+        showToast('Mật khẩu mới phải có ít nhất 6 ký tự!', 'warning', 'Mật Khẩu Quá Ngắn');
+        return;
+      }
+
+      const btn = document.getElementById('btnChangePassword');
+      btn.disabled = true;
+
+      try {
+        const res = await adminApi.changePassword(oldPassword, newPassword);
+        if (res.success) {
+          showToast('Đổi mật khẩu thành công! Vui lòng ghi nhớ mật khẩu mới.', 'success', 'Đổi Mật Khẩu Thành Công');
+          document.getElementById('changePasswordForm').reset();
+        } else {
+          showToast(res.message || 'Mật khẩu cũ không chính xác.', 'error', 'Thất Bại');
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối máy chủ.', 'error', 'Lỗi Kết Nối');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    loadCompanySettings();
+  </script>
+</body>
+</html>

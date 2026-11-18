@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển Quản Trị - ITC TECHNOLOGY CMS</title>
+  
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('itc_admin_token');
+        var u = localStorage.getItem('itc_admin_user');
+        if (!t || !u) {
+          document.documentElement.style.display = 'none';
+          window.location.replace('/admin/login');
+        }
+      } catch(e) {
+        document.documentElement.style.display = 'none';
+        window.location.replace('/admin/login');
+      }
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <style>
+    /* Inline specific micro-adjustments for dashboard components */
+    .metric-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #065f46;
+      background: #ecfdf5;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #a7f3d0;
+    }
+    .quick-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quick-link-btn:hover {
+      transform: translateY(-2px);
+    }
+    .quick-link-btn.primary {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+    .quick-link-btn.primary:hover {
+      background: #1d4ed8;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+    }
+    .quick-link-btn.secondary {
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+    .quick-link-btn.secondary:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .system-health-card {
+      background: #ffffff;
+      border: 1px solid var(--admin-border);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 13px;
+    }
+    .spec-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .spec-label {
+      color: #64748b;
+      font-weight: 500;
+    }
+    .spec-val {
+      font-weight: 700;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <a href="/admin" class="sidebar-brand" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; cursor: pointer;">
+        <img src="/images/itc_logo.png" alt="ITC Logo" class="admin-brand-logo">
+        <div>
+          <div class="brand-name">ITC TECHNOLOGY</div>
+          <div class="brand-sub">Admin CMS Portal</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-heading">Tổng Quan</li>
+        <li class="nav-item">
+          <a href="/admin" class="nav-link active">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            <span>Bảng Điều Khiển</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Quản Lý Sản Phẩm</li>
+        <li class="nav-item">
+          <a href="/admin/products" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>Sản Phẩm & Đồ Gá</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/categories" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span>Danh Mục & Thể Loại</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Nội Dung & Khách Hàng</li>
+        <li class="nav-item">
+          <a href="/admin/articles" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <span>Bài Viết & Tin Tức</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/quotes" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <span>Yêu Cầu Báo Giá</span>
+            <span class="nav-badge" id="sidebarQuotesCount">0</span>
+          </a>
+        </li>
+
+        <li class="sidebar-heading">Cấu Hình</li>
+        <li class="nav-item">
+          <a href="/admin/settings" class="nav-link">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <span>Cài Đặt & Mật Khẩu</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">&larr; Xem Website</a>
+        <button class="btn-logout">Đăng xuất</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-header">
+        <div>
+          <h2 class="page-title">Bảng Điều Khiển Hệ Thống (Dashboard)</h2>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <!-- Live Status Indicator -->
+          <div class="metric-badge-live">
+            <span class="status-indicator-dot"></span>
+            <span>Hạ tầng Sẵn sàng (Port 3050)</span>
+            <span style="color: #cbd5e1;">|</span>
+            <span id="dashboardClock" style="font-feature-settings: 'tnum';">--:--:--</span>
+          </div>
+
+          <!-- User Profile -->
+          <div class="user-profile">
+            <div class="user-avatar" id="adminCurrentUserAvatar">A</div>
+            <div class="user-info">
+              <div class="user-name" id="adminCurrentUserName">Quản trị viên</div>
+              <div class="user-role" id="adminCurrentUserRole">Superadmin</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <!-- Quick Action Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Tổng quan hoạt động & Tiếp nhận dữ liệu</h3>
+            <p style="font-size: 13px; color: #64748b;">Quản trị danh mục sản phẩm, đồ gá Jig ô tô xe máy, xe đẩy part và xử lý báo giá khách hàng.</p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="/admin/products.html?action=new" class="quick-link-btn primary">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Đăng Sản Phẩm JIG</span>
+            </a>
+            <a href="/admin/articles.html?action=new" class="quick-link-btn secondary">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Đăng Bài Viết</span>
+            </a>
+            <a href="/admin/quotes.html" class="quick-link-btn secondary">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Báo Giá (RFQ)</span>
+            </a>
+            <a href="/" target="_blank" class="quick-link-btn secondary">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span>Mở Web</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- KPI Cards Grid (5 Multi-Accent Industrial Cards) -->
+        <div class="stats-row stats-row-5">
+          <!-- Card 1: Sản Phẩm / Đồ Gá (Blue) -->
+          <div class="kpi-card card-blue" style="animation-delay: 0.05s;">
+            <div>
+              <div class="kpi-card-head">
+                <div class="kpi-title">Sản Phẩm & JIG</div>
+                <div class="kpi-icon blue">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiProducts">0</div>
+              <div class="kpi-subtext blue">✓ Đang kích hoạt chuẩn</div>
+            </div>
+            <a href="/admin/products.html" style="font-size: 11.5px; color: #2563eb; text-decoration: none; font-weight: 700; margin-top: 12px; display: inline-flex; align-items: center; gap: 4px;">
+              Quản lý danh mục SP &rarr;
+            </a>
+          </div>
+
+          <!-- Card 2: Yêu Cầu Báo Giá (Emerald) -->
+          <div class="kpi-card card-emerald" style="animation-delay: 0.12s;">
+            <div>
+              <div class="kpi-card-head">
+                <div class="kpi-title">Báo Giá Kỹ Thuật (RFQ)</div>
+                <div class="kpi-icon green">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiQuotes">0</div>
+              <div class="kpi-subtext green" id="kpiNewQuotesBadge">● Tiếp nhận từ khách</div>
+            </div>
+            <a href="/admin/quotes.html" style="font-size: 11.5px; color: #059669; text-decoration: none; font-weight: 700; margin-top: 12px; display: inline-flex; align-items: center; gap: 4px;">
+              Xem chi tiết RFQ &rarr;
+            </a>
+          </div>
+
+          <!-- Card 3: Danh Mục Ngành Hàng (Amber) -->
+          <div class="kpi-card card-amber" style="animation-delay: 0.19s;">
+            <div>
+              <div class="kpi-card-head">
+                <div class="kpi-title">Danh Mục Thiết Bị</div>
+                <div class="kpi-icon orange">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiCategories">0</div>
+              <div class="kpi-subtext orange">📁 5 nhóm kỹ thuật</div>
+            </div>
+            <a href="/admin/categories.html" style="font-size: 11.5px; color: #d97706; text-decoration: none; font-weight: 700; margin-top: 12px; display: inline-flex; align-items: center; gap: 4px;">
+              Chỉnh sửa nhóm &rarr;
+            </a>
+          </div>
+
+          <!-- Card 4: Bài Viết & Kỹ Thuật (Indigo) -->
+          <div class="kpi-card card-indigo" style="animation-delay: 0.26s;">
+            <div>
+              <div class="kpi-card-head">
+                <div class="kpi-title">Bài Viết & Góc Kỹ Thuật</div>
+                <div class="kpi-icon purple">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiArticles">0</div>
+              <div class="kpi-subtext purple">★ Chuẩn chuyên sâu SEO</div>
+            </div>
+            <a href="/admin/articles.html" style="font-size: 11.5px; color: #4f46e5; text-decoration: none; font-weight: 700; margin-top: 12px; display: inline-flex; align-items: center; gap: 4px;">
+              Xem danh sách bài &rarr;
+            </a>
+          </div>
+
+          <!-- Card 5: Lượt Xem & Tra Cứu (Teal) -->
+          <div class="kpi-card card-teal" style="animation-delay: 0.33s;">
+            <div>
+              <div class="kpi-card-head">
+                <div class="kpi-title">Lượt Tra Cứu Catalog</div>
+                <div class="kpi-icon teal">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value" id="kpiViews">0</div>
+              <div class="kpi-subtext teal">↗ Tương tác khách hàng</div>
+            </div>
+            <a href="/admin/products.html" style="font-size: 11.5px; color: #0d9488; text-decoration: none; font-weight: 700; margin-top: 12px; display: inline-flex; align-items: center; gap: 4px;">
+              Thống kê lượt xem &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Dashboard Split: Left (Quotes Table) & Right (Category Breakdown & System Health) -->
+        <div class="dashboard-grid">
+          <!-- Left Column: Recent Quotes Table -->
+          <div class="card" style="margin-bottom: 0;">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Yêu Cầu Báo Giá Kỹ Thuật Mới Tiếp Nhận</h3>
+                <p style="font-size: 12px; color: var(--admin-text-muted); margin-top: 2px;">Các yêu cầu khảo sát, báo giá đồ gá & xe đẩy từ website</p>
+              </div>
+              <a href="/admin/quotes.html" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;">
+                Xem tất cả &rarr;
+              </a>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Khách hàng</th>
+                    <th>Điện thoại liên hệ</th>
+                    <th>Đơn vị / Công ty</th>
+                    <th>Thiết bị quan tâm</th>
+                    <th>Ngày gửi</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="recentQuotesTable">
+                  <tr><td colspan="7" style="text-align: center; padding: 25px; color: var(--admin-text-muted);">Đang tải dữ liệu báo giá...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right Column: Distribution & System Health -->
+          <div>
+            <!-- Category Distribution Widget -->
+            <div class="system-health-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h4 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin: 0;">
+                  Phân Bổ Sản Phẩm Theo Nhóm
+                </h4>
+                <a href="/admin/categories.html" style="font-size: 12px; color: var(--admin-primary); text-decoration: none; font-weight: 700;">Xem chi tiết &rarr;</a>
+              </div>
+              <div id="categoryBreakdownList">
+                <div style="font-size: 12.5px; color: #94a3b8; text-align: center; padding: 15px;">Đang tải danh mục...</div>
+              </div>
+            </div>
+
+            <!-- Infrastructure & Factory Specs Widget -->
+            <div class="system-health-card">
+              <h4 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 14px;">
+                Thông Tin Pháp Lý Doanh Nghiệp
+              </h4>
+              <div class="spec-item">
+                <span class="spec-label">Doanh nghiệp:</span>
+                <span class="spec-val">CÔNG TY TNHH CÔNG NGHỆ ITC</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Mã số thuế (MST):</span>
+                <span class="spec-val" style="color: #2563eb; background: #eff6ff; padding: 2px 7px; border-radius: 4px;">0102367857</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Hotline & Zalo:</span>
+                <span class="spec-val"><a href="tel:0983684968" style="color: #059669; text-decoration: none;">0983 684 968</a></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Email tiếp nhận:</span>
+                <span class="spec-val" style="font-size: 12px;"><a href="mailto:trunghn@thietbicongnghiep-vn.com.vn" style="color: inherit; text-decoration: none;">trunghn@thietbicongnghiep-vn.com.vn</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/admin/js/auth.js"></script>
+  <script type="module">
+    import { adminApi } from '/admin/js/api.js';
+
+    // Clock in Vietnam time
+    function startClock() {
+      const clockEl = document.getElementById('dashboardClock');
+      function update() {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('vi-VN', { hour12: false });
+        if (clockEl) clockEl.textContent = timeStr;
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    // Number count-up animation
+    function animateValue(id, start, end, duration = 800) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (start === end || isNaN(end)) {
+        el.textContent = end || 0;
+        return;
+      }
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        el.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = end;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Helper for avatar initial letter
+    function getInitials(name) {
+      if (!name) return 'K';
+      const parts = name.trim().split(' ');
+      return parts[parts.length - 1].charAt(0).toUpperCase();
+    }
+
+    // Color mapper for categories
+    const categoryColors = ['blue', 'green', 'orange', 'purple', 'teal'];
+
+    async function loadDashboardStats() {
+      try {
+        const res = await adminApi.getStats();
+        if (res.success && res.data) {
+          const d = res.data;
+          
+          // Animate counter values
+          animateValue('kpiProducts', 0, d.totalProducts || 0);
+          animateValue('kpiCategories', 0, d.totalCategories || 0);
+          animateValue('kpiQuotes', 0, d.totalQuotes || 0);
+          animateValue('kpiArticles', 0, d.totalArticles || 0);
+          animateValue('kpiViews', 0, d.totalViews || 0);
+
+          document.getElementById('sidebarQuotesCount').textContent = d.newQuotes || 0;
+          if (document.getElementById('kpiNewQuotesBadge')) {
+            document.getElementById('kpiNewQuotesBadge').textContent = `● ${d.newQuotes || 0} yêu cầu mới`;
+          }
+
+          // Category distribution
+          const breakdownEl = document.getElementById('categoryBreakdownList');
+          if (d.categoryBreakdown && d.categoryBreakdown.length > 0) {
+            const maxVal = Math.max(...d.categoryBreakdown.map(c => c.count), 1);
+            breakdownEl.innerHTML = d.categoryBreakdown.map((cat, idx) => {
+              const colorClass = categoryColors[idx % categoryColors.length];
+              const pct = Math.round((cat.count / (d.totalProducts || 1)) * 100);
+              return `
+                <div style="margin-bottom: 13px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span style="font-weight: 600; color: #334155;">${cat.name}</span>
+                    <span style="font-weight: 700; color: #0f172a;">${cat.count} SP <span style="color: #94a3b8; font-size: 11px;">(${pct}%)</span></span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill ${colorClass}" style="width: ${Math.max(pct, 12)}%;"></div>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          } else {
+            breakdownEl.innerHTML = '<div style="font-size: 12.5px; color: #94a3b8; text-align: center; padding: 10px;">Chưa có dữ liệu danh mục.</div>';
+          }
+
+          // Recent Quotes Table
+          const table = document.getElementById('recentQuotesTable');
+          if (d.recentQuotes && d.recentQuotes.length > 0) {
+            table.innerHTML = d.recentQuotes.map(q => {
+              const initial = getInitials(q.customerName);
+              const isNew = q.status === 'Mới';
+              return `
+                <tr>
+                  <td>
+                    <div class="customer-cell">
+                      <div class="customer-avatar" style="background: ${isNew ? '#fef3c7; color: #92400e;' : '#e0e7ff; color: #3730a3;'}">
+                        ${initial}
+                      </div>
+                      <div>
+                        <strong style="color: #0f172a;">${q.customerName}</strong>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <a href="tel:${q.phone}" style="color: #2563eb; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                      <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+                      ${q.phone}
+                    </a>
+                  </td>
+                  <td>
+                    <span style="font-weight: 600; color: #475569;">${q.company || 'Doanh nghiệp'}</span>
+                  </td>
+                  <td style="max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${q.productInterest}">
+                    ${q.productInterest}
+                  </td>
+                  <td style="font-size: 12.5px; color: #64748b;">
+                    ${new Date(q.createdAt).toLocaleDateString('vi-VN')}
+                  </td>
+                  <td>
+                    <span class="badge ${isNew ? 'badge-warning' : 'badge-success'}">${q.status}</span>
+                  </td>
+                  <td>
+                    <a href="/admin/quotes.html" class="btn btn-secondary btn-icon" style="font-size: 12px; font-weight: 700;">
+                      Chi tiết
+                    </a>
+                  </td>
+                </tr>
+              `;
+            }).join('');
+          } else {
+            table.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 25px; color: #64748b;">Chưa có yêu cầu báo giá nào gần đây.</td></tr>';
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load stats:', err);
+      }
+    }
+
+    startClock();
+    loadDashboardStats();
+  </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Nhập Quản Trị - ITC TECHNOLOGY CMS</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <style>
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top right, #17365d, #0b1e36);
+      padding: 20px;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+    .login-brand {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .login-brand-logo {
+      height: 68px;
+      width: auto;
+      max-width: 130px;
+      object-fit: contain;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+    .login-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--admin-sidebar-bg);
+    }
+    .login-sub {
+      font-size: 13px;
+      color: var(--admin-text-muted);
+      margin-top: 4px;
+    }
+
+    .btn-submit-login {
+      width: 100%;
+      padding: 13px;
+      background: var(--admin-primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit-login:hover {
+      background: var(--admin-primary-dark);
+    }
+    .error-msg {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      margin-bottom: 18px;
+      display: none;
+    }
+  </style>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      <div class="login-brand">
+        <img src="/images/itc_logo.png" alt="ITC Technology Logo" class="login-brand-logo">
+        <h2 class="login-title">Hệ Thống Quản Trị CMS</h2>
+        <p class="login-sub">ITC TECHNOLOGY - Quản lý Sản phẩm, Đồ gá JIG & Báo giá</p>
+      </div>
+
+      <div class="error-msg" id="loginError"></div>
+
+      <form id="adminLoginForm">
+        <div class="form-group">
+          <label class="form-label">Tài khoản quản trị</label>
+          <input type="text" id="loginUsername" class="form-control" required placeholder="Nhập tài khoản quản trị">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label class="form-label">Mật khẩu</label>
+          <input type="password" id="loginPassword" class="form-control" required placeholder="Nhập mật khẩu">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 22px;">
+          <a href="javascript:void(0)" id="btnOpenForgotModal" style="font-size: 13px; color: var(--admin-primary); text-decoration: none; font-weight: 600;">
+            Quên mật khẩu?
+          </a>
+        </div>
+
+        <button type="submit" class="btn-submit-login" id="btnLoginSubmit">
+          Đăng Nhập Quản Trị
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 25px;">
+        <a href="/" style="font-size: 13px; color: var(--admin-primary); text-decoration: none; font-weight: 600;">
+          &larr; Trở về Trang Chủ Website
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgotPasswordModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 30, 54, 0.7); backdrop-filter: blur(4px); z-index: 99999; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #ffffff; border-radius: var(--radius-lg); max-width: 440px; width: 100%; padding: 30px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25); position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--admin-sidebar-bg);">Khôi Phục Mật Khẩu Quản Trị</h3>
+        <button type="button" id="btnCloseForgotModal" style="background: none; border: none; font-size: 24px; color: #64748b; cursor: pointer; line-height: 1;">&times;</button>
+      </div>
+
+      <p style="font-size: 13px; color: var(--admin-text-muted); margin-bottom: 18px; line-height: 1.6;">
+        Nhập email quản trị viên đã được cài đặt trong hệ thống để nhận thông tin tài khoản và mật khẩu khôi phục mới.
+      </p>
+
+      <div id="forgotMsg" style="display: none; padding: 12px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 16px;"></div>
+
+      <form id="forgotPasswordForm">
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Email nhận khôi phục (*)</label>
+          <input type="email" id="forgotEmail" class="form-control" required placeholder="Nhập email quản trị viên của bạn">
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <button type="button" class="btn btn-secondary" id="btnCancelForgot" style="flex: 1;">Đóng</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmitForgot" style="flex: 2;">Gửi Mật Khẩu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { adminApi } from '/admin/js/api.js';
+
+    // Safe session check: Only redirect if token is actively verified by backend
+    async function initLoginCheck() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('action') === 'logout') {
+        localStorage.removeItem('itc_admin_token');
+        localStorage.removeItem('itc_admin_user');
+        document.cookie = 'itc_admin_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
+        return;
+      }
+
+      const token = localStorage.getItem('itc_admin_token');
+      const user = localStorage.getItem('itc_admin_user');
+      if (!token || !user) {
+        localStorage.removeItem('itc_admin_token');
+        localStorage.removeItem('itc_admin_user');
+        document.cookie = 'itc_admin_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/me', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (res.ok && data.success && data.user) {
+          // Valid token! Ensure session cookie is present so server-side route guard accepts it
+          document.cookie = `itc_admin_session=${token}; Path=/; Max-Age=86400; SameSite=Lax`;
+          window.location.replace('/admin');
+        } else {
+          // Token is expired/invalid - remove to prevent any redirect loop
+          localStorage.removeItem('itc_admin_token');
+          localStorage.removeItem('itc_admin_user');
+          document.cookie = 'itc_admin_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
+        }
+      } catch (e) {
+        // Network error - stay on login page
+      }
+    }
+    initLoginCheck();
+
+    const form = document.getElementById('adminLoginForm');
+    const errBox = document.getElementById('loginError');
+    const submitBtn = document.getElementById('btnLoginSubmit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errBox.style.display = 'none';
+
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Đang xác thực...';
+
+      try {
+        const res = await adminApi.login(username, password);
+        if (res.success && res.token) {
+          localStorage.setItem('itc_admin_token', res.token);
+          localStorage.setItem('itc_admin_user', JSON.stringify(res.user));
+          document.cookie = `itc_admin_session=${res.token}; Path=/; Max-Age=86400; SameSite=Lax`;
+          window.location.replace('/admin');
+        } else {
+          errBox.textContent = res.message || 'Tài khoản hoặc mật khẩu không chính xác';
+          errBox.style.display = 'block';
+        }
+      } catch (err) {
+        errBox.innerHTML = '<strong>Không thể kết nối đến máy chủ!</strong><br>Vui lòng đảm bảo server đang hoạt động.';
+        errBox.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Đăng Nhập Quản Trị';
+      }
+    });
+
+    // Forgot Password Handling
+    const forgotModal = document.getElementById('forgotPasswordModal');
+    const btnOpenForgot = document.getElementById('btnOpenForgotModal');
+    const btnCloseForgot = document.getElementById('btnCloseForgotModal');
+    const btnCancelForgot = document.getElementById('btnCancelForgot');
+    const forgotForm = document.getElementById('forgotPasswordForm');
+    const forgotMsg = document.getElementById('forgotMsg');
+    const btnSubmitForgot = document.getElementById('btnSubmitForgot');
+
+    function openModal() {
+      forgotModal.style.display = 'flex';
+      forgotMsg.style.display = 'none';
+    }
+    function closeModal() {
+      forgotModal.style.display = 'none';
+    }
+
+    btnOpenForgot.addEventListener('click', openModal);
+    btnCloseForgot.addEventListener('click', closeModal);
+    btnCancelForgot.addEventListener('click', closeModal);
+
+    forgotForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('forgotEmail').value.trim();
+      btnSubmitForgot.disabled = true;
+      btnSubmitForgot.textContent = 'Đang gửi...';
+
+      try {
+        const res = await adminApi.forgotPassword(email);
+        if (res.success) {
+          forgotMsg.style.display = 'block';
+          forgotMsg.style.background = '#ecfdf5';
+          forgotMsg.style.color = '#065f46';
+          forgotMsg.style.border = '1px solid #a7f3d0';
+          forgotMsg.innerHTML = `
+            <strong>Thành công!</strong> ${res.message}<br>
+            <div style="margin-top: 10px; font-size: 13.5px; background: #fff; padding: 10px 14px; border-radius: 6px; border: 1px solid #10b981; line-height: 1.6;">
+              • Tài khoản (User): <strong style="color: #1e3a8a;">${res.username || 'admin'}</strong><br>
+              • Mật khẩu mới: <strong style="color: #047857;"><code>${res.tempPassword}</code></strong><br>
+              • Đã gửi về email: <strong>${res.email || email}</strong>
+            </div>
+          `;
+          document.getElementById('loginUsername').value = res.username || 'admin';
+          document.getElementById('loginPassword').value = res.tempPassword;
+          document.getElementById('loginPassword').type = 'text';
+          setTimeout(() => {
+            closeModal();
+          }, 6000);
+        } else {
+          forgotMsg.style.display = 'block';
+          forgotMsg.style.background = '#fef2f2';
+          forgotMsg.style.color = '#991b1b';
+          forgotMsg.style.border = '1px solid #fecaca';
+          forgotMsg.textContent = res.message || 'Lỗi gửi yêu cầu khôi phục.';
+        }
+      } catch (err) {
+        forgotMsg.style.display = 'block';
+        forgotMsg.style.background = '#fef2f2';
+        forgotMsg.style.color = '#991b1b';
+        forgotMsg.textContent = 'Không thể kết nối đến máy chủ.';
+      } finally {
+        btnSubmitForgot.disabled = false;
+        btnSubmitForgot.textContent = 'Gửi Mật Khẩu';
+      }
+    });
+
+    // Dynamic brand in login
+    try {
+      const s = JSON.parse(localStorage.getItem('webitc_settings') || '{}');
+      if (s.brandName) {
+        const titleEl = document.querySelector('.login-sub');
+        if (titleEl) titleEl.textContent = `${s.brandName} - Quản lý Sản phẩm, Đồ gá JIG & Báo giá`;
+      }
+      if (s.logoUrl) {
+        const logo = document.querySelector('.login-brand-logo');
+        if (logo) logo.src = s.logoUrl;
+      }
+    } catch(e) {}
+  </script>
+</body>
+</html>

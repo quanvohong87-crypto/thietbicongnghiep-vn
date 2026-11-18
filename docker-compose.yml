@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: itc_industrial_web
+    restart: always
+    ports:
+      - "3050:3050"
+    environment:
+      - PORT=3050
+      - NODE_ENV=production
+    volumes:
+      # Persist database and uploaded images outside the container
+      - ./backend/data:/app/backend/data
+      - ./backend/uploads:/app/backend/uploads
